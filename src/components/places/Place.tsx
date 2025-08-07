@@ -2,9 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import { placeProps } from '@/types'
 import ChangePlace from './ChangePlace'
-import DeletePlace from './DeletePlace'
 import Button from '../Button/Button'
 import { MdEdit } from 'react-icons/md';
+import DeleteModalButton from '../Modal/DeleteModalButton'
 
 const Place = ({ place }: { place: placeProps }) => {
     const placeStyle = {
@@ -27,7 +27,7 @@ const Place = ({ place }: { place: placeProps }) => {
                 <Link href={`edit/${place.id}`}>
                     <Button type='submit' bgColor='bg-purple-400 cursor-pointer' text={<MdEdit />}></Button>
                 </Link>
-                <DeletePlace place={place} />
+                <DeleteModalButton place={place} />
             </div>
         </div>
     )

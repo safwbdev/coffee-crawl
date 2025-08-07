@@ -1,4 +1,3 @@
-// 'use client';
 import * as actions from "@/actions"
 import AddModal from "@/components/Modal/AddModal";
 import AddModalButton from "@/components/Modal/AddModalButton";
@@ -8,20 +7,22 @@ import List from "@/components/List/List";
  * ====
  * TODO
  * ====
- * - image upload
+ * - image upload | cloudinary
  * - mobile layout
  * - single page layout
  * - responsiveness
  * - filter by favorite, banned
+ * - sort function
  *  
  * ====
  * DONE
  * ====
+ * - delete modal
  * - single page for each place
  * - update add/edit forms
  * - popup modal
  * - forms in modal
- * - forms in modalpage
+ * - forms in modal page
  * - array data
  * - filter by complete, incmoplete, 
  * - status frontend doesn't update upon clicking 

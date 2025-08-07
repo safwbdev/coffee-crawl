@@ -6,6 +6,8 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 type ThemeContextType = {
     openAddModal: Boolean;
     setOpenAddModal: React.Dispatch<React.SetStateAction<Boolean>>;
+    openDeleteModal: Boolean;
+    setOpenDeleteModal: React.Dispatch<React.SetStateAction<Boolean>>;
     openEditModal: Boolean;
     setOpenEditModal: React.Dispatch<React.SetStateAction<Boolean>>;
     currentEdit: String;
@@ -14,6 +16,8 @@ type ThemeContextType = {
     setCurrentEditPlace: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
     filter: Number;
     setFilter: React.Dispatch<React.SetStateAction<Number>>;
+    placeToDelete: placeProps | undefined;
+    setPlaceToDelete: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
 };
 
 const coffeeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -21,7 +25,9 @@ const coffeeContext = createContext<ThemeContextType | undefined>(undefined);
 const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
     const [openAddModal, setOpenAddModal] = useState<Boolean>(false);
     const [openEditModal, setOpenEditModal] = useState<Boolean>(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState<Boolean>(false);
     const [filter, setFilter] = useState<Number>(0);
+    const [placeToDelete, setPlaceToDelete] = useState<placeProps | undefined>(undefined);
     const [currentEditPlace, setCurrentEditPlace] = useState<placeProps | undefined>(undefined);
     const [currentEdit, setCurrentEdit] = useState<String>('');
 
@@ -35,7 +41,11 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         currentEditPlace,
         setCurrentEditPlace,
         filter,
-        setFilter
+        setFilter,
+        openDeleteModal,
+        setOpenDeleteModal,
+        placeToDelete,
+        setPlaceToDelete,
     }), [openAddModal,
         setOpenAddModal,
         openEditModal,
@@ -45,7 +55,11 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         currentEditPlace,
         setCurrentEditPlace,
         filter,
-        setFilter
+        setFilter,
+        openDeleteModal,
+        setOpenDeleteModal,
+        placeToDelete,
+        setPlaceToDelete,
     ])
 
 

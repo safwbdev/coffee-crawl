@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Place from '../places/Place'
 import { placeProps } from '@/types'
 import Button from '../Button/Button'
+import DeleteModal from '../Modal/DeleteModal'
 
 const List = ({ data }: { data: placeProps[] }) => {
 
@@ -27,20 +28,23 @@ const List = ({ data }: { data: placeProps[] }) => {
     }, [filter, data])
 
     return (
-        <div className="lol">
-            <div className="flex items-center justify-center">
-                <Button onClick={() => setFilter(0)} text={'Clear filters'} actionButton />
-                <Button onClick={() => setFilter(1)} text={'Incomplete'} bgColor='bg-blue-500' actionButton />
-                <Button onClick={() => setFilter(2)} text={'Completed'} bgColor='bg-green-400' actionButton />
+        <>
+            <div className="lol">
+                <div className="flex items-center justify-center">
+                    <Button onClick={() => setFilter(0)} text={'Clear filters'} actionButton />
+                    <Button onClick={() => setFilter(1)} text={'Incomplete'} bgColor='bg-blue-500' actionButton />
+                    <Button onClick={() => setFilter(2)} text={'Completed'} bgColor='bg-green-400' actionButton />
+                </div>
+                <div className="flex flex-col gap-5 items-center justify-center mt-10 w-screen">
+                    {listData.map((place, id) => (
+                        <div className="w-full" key={id}>
+                            <Place place={place} />
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className="flex flex-col gap-5 items-center justify-center mt-10 w-screen">
-                {listData.map((place, id) => (
-                    <div className="w-full" key={id}>
-                        <Place place={place} />
-                    </div>
-                ))}
-            </div>
-        </div>
+            <DeleteModal />
+        </>
     )
 }
 
