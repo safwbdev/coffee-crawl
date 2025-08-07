@@ -30,6 +30,7 @@ export interface placeProps {
     type?: string | null;
     cuisine?: string | null;
     isCompleted: boolean;
+    favorite?: boolean;
     createdAt?: Date;
 
 }

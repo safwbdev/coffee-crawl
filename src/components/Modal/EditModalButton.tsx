@@ -5,8 +5,8 @@ import { MdEdit } from 'react-icons/md';
 const EditModalButton = () => {
 
     return (
-        <button className={`text-blue-500 fixed bottom-20 right-20 cursor-pointer`}>
-            <MdEdit size={41} />
+        <button className={`text-white-500 fixed top-5 right-5 cursor-pointer`}>
+            <MdEdit size={20} />
         </button>)
 }
 

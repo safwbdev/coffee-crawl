@@ -62,6 +62,25 @@ export async function changeStatus(formData: FormData) {
     })
     revalidatePath('/')
 }
+export async function favoriteStatus(formData: FormData) {
+    const inputId = formData.get("inputId") as string;
+    const place = await prisma.place.findUnique({
+        where: {
+            id: inputId
+        }
+    })
+    const updatedStatus = !place?.favorite;
+
+    await prisma.place.update({
+        where: {
+            id: inputId
+        },
+        data: {
+            favorite: updatedStatus
+        }
+    })
+    revalidatePath('/')
+}
 export async function editPlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const newName = formData.get("newName") as string;

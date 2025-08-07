@@ -13,11 +13,13 @@ import List from "@/components/List/List";
  * - responsiveness
  * - filter by favorite, banned
  * - sort function
+ * - rating modal & functionality
  *  
  * ====
  * DONE
  * ====
  * - delete modal
+ * - add favorite
  * - single page for each place
  * - update add/edit forms
  * - popup modal
