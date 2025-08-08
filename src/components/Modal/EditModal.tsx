@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { FaWindowClose } from 'react-icons/fa';
-import EditForm from '../places/EditForm';
+// import EditForm from '../places/EditForm';
 import { useCoffeeContext } from '@/context/CoffeeContext';
 
 const EditModal = () => {

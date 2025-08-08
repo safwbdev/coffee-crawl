@@ -16,7 +16,7 @@ type ThemeContextType = {
     setCurrentEdit: React.Dispatch<React.SetStateAction<string>>;
     currentEditPlace: placeProps | undefined;
     setCurrentEditPlace: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
-    filter: Number;
+    filter: number;
     setFilter: React.Dispatch<React.SetStateAction<number>>;
     placeToDelete: placeProps | undefined;
     setPlaceToDelete: React.Dispatch<React.SetStateAction<placeProps | undefined>>;

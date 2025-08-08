@@ -7,6 +7,7 @@ const Form = ({ children, action, className, onSubmit }: formProps) => {
     const ref = useRef<HTMLFormElement>(null)
     return (
         <form
+            className={className}
             onSubmit={onSubmit}
             ref={ref}
             action={async (formData) => {
