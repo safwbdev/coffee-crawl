@@ -1,9 +1,9 @@
 import React from 'react'
 import * as actions from "@/actions"
-import { FaLocationArrow } from 'react-icons/fa';
 import EditPlace from '@/components/places/EditForm';
 
-const EditPlacePage = async ({ params }: any) => {
+const EditPlacePage = async ({ params }: { params: Promise<{ id: string }>; }) => {
+
     const { id } = await params;
 
     const data = await actions.getDataById(id);

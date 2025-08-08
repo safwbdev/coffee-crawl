@@ -5,7 +5,7 @@ export interface InputProps {
     type: string;
     placeholder?: string;
     value?: string;
-    onChange?: any
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
     isEdit?: boolean
 }
 
@@ -28,6 +28,7 @@ export interface placeProps {
     name?: string | null;
     location?: string | null;
     type?: string | null;
+    rating?: number | null;
     cuisine?: string | null;
     isCompleted: boolean;
     favorite?: boolean;
