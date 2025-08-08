@@ -5,7 +5,7 @@ export interface InputProps {
     type: string;
     placeholder?: string;
     value?: string;
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
+    onChange?: React.Dispatch<React.SetStateAction<string>>
     isEdit?: boolean
 }
 

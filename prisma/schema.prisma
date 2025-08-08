@@ -15,15 +15,15 @@ datasource db {
 }
 
 model Place {
-  id string @id @default(uuid()) @map("_id")
-  name string?
-  location string? @default("NA")
-  type string? @default("NA")
-  cuisine string? @default("NA")
+  id String @id @default(uuid()) @map("_id")
+  name String?
+  location String? @default("NA")
+  type String? @default("NA")
+  cuisine String? @default("NA")
   rating Int @default(0)
-  socials string[] @default([])
-  images string[] @default([])
-  bavorite boolean @default(false)
-  isCompleted boolean @default(false)
+  socials String[] @default([])
+  images String[] @default([])
+  favorite Boolean @default(false)
+  isCompleted Boolean @default(false)
   createdAt DateTime @default(now())
 }
