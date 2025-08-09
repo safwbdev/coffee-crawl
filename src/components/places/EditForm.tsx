@@ -1,11 +1,12 @@
 'use client';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Button from '../Button/Button';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import * as actions from "@/actions"
 import { useCoffeeContext } from '@/context/CoffeeContext';
 import { placeProps } from '@/types'
+import { CldUploadWidget } from 'next-cloudinary';
 
 const EditForm = ({ place }: { place: placeProps }) => {
     const { setOpenEditModal, currentEditPlace } = useCoffeeContext();
@@ -13,6 +14,7 @@ const EditForm = ({ place }: { place: placeProps }) => {
     const [newLocation, setNewLocation] = useState<string>(place?.location || '')
     const [newType, setNewType] = useState<string>(place?.type || '')
     const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
+    const [image, setImage] = useState<string | null>(null)
 
     const handleSubmit = () => {
         setOpenEditModal(false);
@@ -50,6 +52,27 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     type='text'
                     isEdit
                 />
+                <CldUploadWidget
+                    uploadPreset="upload"
+                    onSuccess={(results, { widget }) => {
+                        if (results?.info)
+                            console.log('Public :', results?.info);
+                        // const { url } = results?.info
+                        // console.log(url);
+
+                        setImage(results?.info?.url)
+                        widget.close();
+                    }}
+                >
+                    {({ open }) => {
+                        return (
+                            <button onClick={() => open()}>
+                                Upload an Image
+                            </button>
+                        );
+                    }}
+                </CldUploadWidget>
+                {image && (<img src={image} alt={''} />)}
                 <Button type='submit' text="Save"></Button>
             </div>
         </Form>
