@@ -7,17 +7,18 @@ import List from "@/components/List/List";
  * ====
  * TODO
  * ====
- * - image upload | cloudinary
  * - mobile layout
  * - single page layout
  * - responsiveness
  * - filter by favorite, banned
  * - sort function
  * - rating modal & functionality
+ * - social media
  *  
  * ====
  * DONE
  * ====
+ * - image upload | cloudinary
  * - delete modal
  * - add favorite
  * - single page for each place

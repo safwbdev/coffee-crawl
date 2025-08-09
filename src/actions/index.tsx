@@ -28,6 +28,7 @@ export async function createdPlace(formData: FormData) {
     const location = formData.get("location") as string;
     const type = formData.get("type") as string;
     const cuisine = formData.get("cuisine") as string;
+    const inputImage = formData.get("inputImage") as string;
     if (!name.trim()) {
         return;
     }
@@ -38,6 +39,7 @@ export async function createdPlace(formData: FormData) {
             location: location,
             type: type,
             cuisine: cuisine,
+            images: [inputImage],
         }
     });
 
@@ -87,9 +89,7 @@ export async function editPlace(formData: FormData) {
     const newType = formData.get("newType") as string;
     const newLocation = formData.get("newLocation") as string;
     const newCuisine = formData.get("newCuisine") as string;
-
-    console.log(newName);
-
+    const inputImage = formData.get("inputImage") as string;
 
     await prisma.place.update({
         where: {
@@ -100,6 +100,7 @@ export async function editPlace(formData: FormData) {
             location: newLocation,
             type: newType,
             cuisine: newCuisine,
+            images: [inputImage],
         }
     })
     revalidatePath('/')

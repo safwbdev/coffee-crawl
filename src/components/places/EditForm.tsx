@@ -9,15 +9,16 @@ import { placeProps } from '@/types'
 import { CldUploadWidget } from 'next-cloudinary';
 
 const EditForm = ({ place }: { place: placeProps }) => {
-    const { setOpenEditModal, currentEditPlace } = useCoffeeContext();
+    const { setOpenEditModal } = useCoffeeContext();
     const [newName, setNewName] = useState<string>(place?.name || '');
     const [newLocation, setNewLocation] = useState<string>(place?.location || '')
     const [newType, setNewType] = useState<string>(place?.type || '')
     const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
-    const [image, setImage] = useState<string | null>(null)
+    const [image, setImage] = useState<string | undefined>(place?.images ? place?.images[0] : undefined)
 
     const handleSubmit = () => {
         setOpenEditModal(false);
+        setImage(undefined)
     }
 
     return (
@@ -52,27 +53,30 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     type='text'
                     isEdit
                 />
-                <CldUploadWidget
-                    uploadPreset="upload"
-                    onSuccess={(results, { widget }) => {
-                        if (results?.info)
-                            console.log('Public :', results?.info);
-                        // const { url } = results?.info
-                        // console.log(url);
-
-                        setImage(results?.info?.url)
-                        widget.close();
-                    }}
-                >
-                    {({ open }) => {
-                        return (
-                            <button onClick={() => open()}>
-                                Upload an Image
-                            </button>
-                        );
-                    }}
-                </CldUploadWidget>
-                {image && (<img src={image} alt={''} />)}
+                <div className="border-2 w-full flex justify-center flex-col items-center h-80 p-5">
+                    <CldUploadWidget
+                        uploadPreset="upload"
+                        onSuccess={(results, { widget }) => {
+                            if (results?.info) {
+                                if (typeof results?.info !== "string") {
+                                    setImage(results?.info?.url)
+                                }
+                                widget.close();
+                            }
+                        }}
+                    >
+                        {({ open }) => {
+                            return (
+                                <Button text={image ? "Upload A Different Image" : "Upload Image"} onClick={() => open()} bgColor='bg-red-400' actionButton />
+                                // <button onClick={() => open()}>
+                                //     Upload an Image
+                                // </button>
+                            );
+                        }}
+                    </CldUploadWidget>
+                    {image ? (<img src={image} alt={''} />) : (<span>No Image selected</span>)}
+                </div>
+                <Input name='inputImage' value={image} type='hidden'></Input>
                 <Button type='submit' text="Save"></Button>
             </div>
         </Form>
