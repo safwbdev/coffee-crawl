@@ -5,16 +5,21 @@ import Form from '../Form/Form'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import * as actions from '@/actions'
-import { useCoffeeContext } from '@/context/CoffeeContext'
+// import { useCoffeeContext } from '@/context/CoffeeContext'
 import { CldUploadWidget } from 'next-cloudinary';
+import { redirect } from 'next/navigation'
 
 
 const AddPlace = () => {
-    const { setOpenAddModal } = useCoffeeContext();
+    // const { setOpenAddModal } = useCoffeeContext();
     const [image, setImage] = useState<string | undefined>(undefined)
 
+    const handleSubmit = () => {
+        redirect(`/`);
+    }
+
     return (
-        <Form action={actions.createdPlace} onSubmit={() => setOpenAddModal(false)}>
+        <Form action={actions.createdPlace} onSubmit={handleSubmit}>
             <div className="flex justify-center flex-col items-center gap-2 px-6">
                 <Input name='name' type='text' placeholder='Name' />
                 <Input name='location' type='text' placeholder='location' />
@@ -48,7 +53,7 @@ const AddPlace = () => {
                 </div>
                 <div className="flex flex-row">
                     <Button type='submit' text="Add" bgColor='bg-blue-600' />
-                    <Button type='button' onClick={() => setOpenAddModal(false)} text="Cancel" bgColor='bg-red-600' />
+                    {/* <Button type='button' onClick={() => setOpenAddModal(false)} text="Cancel" bgColor='bg-red-600' /> */}
                 </div>
             </div>
         </Form>

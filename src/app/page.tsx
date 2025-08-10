@@ -1,6 +1,6 @@
 import * as actions from "@/actions"
-import AddModal from "@/components/Modal/AddModal";
-import AddModalButton from "@/components/Modal/AddModalButton";
+// import AddModal from "@/components/Modal/AddModal";
+// import AddModalButton from "@/components/Modal/AddModalButton";
 import List from "@/components/List/List";
 
 /**
@@ -10,14 +10,14 @@ import List from "@/components/List/List";
  * - mobile layout
  * - single page layout
  * - responsiveness
- * - filter by favorite, banned
+ * - favorites page
  * - sort function
- * - rating modal & functionality
  * - social media
- *  
  * ====
  * DONE
  * ====
+ * - navigation
+ * - rating modal & functionality
  * - image upload | cloudinary
  * - delete modal
  * - add favorite
@@ -46,8 +46,8 @@ export default async function Home() {
           <List data={data} />
         </div>
       </div>
-      <AddModalButton />
-      <AddModal />
+      {/* <AddModalButton />
+      <AddModal /> */}
     </>
   );
 }

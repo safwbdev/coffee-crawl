@@ -9,7 +9,7 @@ const AddModal = () => {
 
     return openAddModal && (
         <>
-            <div className="absolute border-2  bg-slate-900 z-1 top-1/2 left-1/2 -translate-1/2 w-3/4 md:w-1/2 h-3/4">
+            <div className="fixed border-2  bg-slate-900 z-1 top-1/2 left-1/2 -translate-1/2 w-95/100 md:w-1/2 h-full">
                 <div className="flex justify-between p-4">
                     <span className='font-bold uppercase flex justify-center'>
                         Add new place
@@ -22,7 +22,7 @@ const AddModal = () => {
                     <AddPlace />
                 </div>
             </div>
-            <div className='border-2 absolute w-full h-full justify-center items-center flex top-0 bg-gray-400 opacity-60' onClick={() => setOpenAddModal(false)} />
+            <div className='border-2 fixed w-full h-full justify-center items-center flex top-0 bg-gray-400 opacity-60' onClick={() => setOpenAddModal(false)} />
         </>
 
     )

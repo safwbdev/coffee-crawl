@@ -7,6 +7,7 @@ import * as actions from "@/actions"
 import { useCoffeeContext } from '@/context/CoffeeContext';
 import { placeProps } from '@/types'
 import { CldUploadWidget } from 'next-cloudinary';
+import { redirect } from 'next/navigation'
 
 const EditForm = ({ place }: { place: placeProps }) => {
     const { setOpenEditModal } = useCoffeeContext();
@@ -18,7 +19,8 @@ const EditForm = ({ place }: { place: placeProps }) => {
 
     const handleSubmit = () => {
         setOpenEditModal(false);
-        setImage(undefined)
+        setImage(undefined);
+        redirect(`/places/${place.id}`);
     }
 
     return (
