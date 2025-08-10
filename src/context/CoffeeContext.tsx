@@ -20,8 +20,6 @@ type ThemeContextType = {
     setFilter: React.Dispatch<React.SetStateAction<number>>;
     placeToDelete: placeProps | undefined;
     setPlaceToDelete: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
-    placeToRate: placeProps | undefined;
-    setPlaceToRate: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
 };
 
 const coffeeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -33,7 +31,6 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
     const [openRatingModal, setOpenRatingModal] = useState<boolean>(false);
     const [filter, setFilter] = useState<number>(0);
     const [placeToDelete, setPlaceToDelete] = useState<placeProps | undefined>(undefined);
-    const [placeToRate, setPlaceToRate] = useState<placeProps | undefined>(undefined);
     const [currentEditPlace, setCurrentEditPlace] = useState<placeProps | undefined>(undefined);
     const [currentEdit, setCurrentEdit] = useState<string>('');
 
@@ -54,8 +51,6 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         setPlaceToDelete,
         openRatingModal,
         setOpenRatingModal,
-        placeToRate,
-        setPlaceToRate
     }), [openAddModal,
         setOpenAddModal,
         openEditModal,
@@ -72,8 +67,6 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         setPlaceToDelete,
         openRatingModal,
         setOpenRatingModal,
-        placeToRate,
-        setPlaceToRate
     ])
 
 

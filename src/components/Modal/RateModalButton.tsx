@@ -4,11 +4,10 @@ import { placeProps } from '@/types';
 import { useCoffeeContext } from '@/context/CoffeeContext';
 
 const RateModalButton = ({ place }: { place: placeProps }) => {
-    const { setOpenRatingModal, setPlaceToRate } = useCoffeeContext();
+    const { setOpenRatingModal } = useCoffeeContext();
 
     const handleRateModalButton = () => {
         setOpenRatingModal(true);
-        setPlaceToRate(place)
     }
     return (
         <Button onClick={handleRateModalButton} bgColor='bg-red-400' text={`${place.rating}/10`}></Button>

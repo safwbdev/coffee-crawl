@@ -9,7 +9,7 @@ const AddModal = () => {
 
     return openAddModal && (
         <>
-            <div className="absolute border-2  bg-slate-900 z-1 top-1/2 left-1/2 -translate-1/2 w-1/2 h-1/2">
+            <div className="absolute border-2  bg-slate-900 z-1 top-1/2 left-1/2 -translate-1/2 w-3/4 md:w-1/2 h-3/4">
                 <div className="flex justify-between p-4">
                     <span className='font-bold uppercase flex justify-center'>
                         Add new place

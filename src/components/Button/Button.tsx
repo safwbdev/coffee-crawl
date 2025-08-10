@@ -10,7 +10,7 @@ const Button = ({
     bgColor
 }: buttonProps) => {
     return (
-        <div>
+        <>
             <button onClick={onClick} type={type} className={clsx(
                 actionButton &&
                 'text-white hover:bg-blue focus:ring-4 font-medium founded-lg text-sm px-2 py-2 me-2 mb-2 focus:outline-none cursor-pointer',
@@ -18,7 +18,7 @@ const Button = ({
             )}>
                 {text}
             </button>
-        </div>
+        </>
     )
 }
 

@@ -39,7 +39,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                     </div>
                 </div>
             </div>
-            <RateModal />
+            <RateModal data={data} />
         </>
     )
 }

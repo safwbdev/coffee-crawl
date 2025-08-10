@@ -19,10 +19,14 @@ const DeletePlace = () => {
 
     return (
         <Form action={actions.deletePlace} onSubmit={handleSubmit}>
-            <Input name='inputId' value={placeToDelete?.id} type='hidden'></Input>
-            <Button type='submit' bgColor='bg-green-400' text={
-                "Yes"
-            }></Button>
+            <Input
+                name='inputId'
+                value={placeToDelete?.id}
+                type='hidden' />
+            <Button
+                type='submit'
+                bgColor='bg-green-400'
+                text={"Yes"} />
         </Form>
     )
 }

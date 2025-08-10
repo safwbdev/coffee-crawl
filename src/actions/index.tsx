@@ -105,6 +105,21 @@ export async function editPlace(formData: FormData) {
     })
     revalidatePath('/')
 }
+export async function ratePlace(formData: FormData) {
+    const inputId = formData.get("inputId") as string;
+    const newRate = formData.get("newRate") as string;
+
+
+    await prisma.place.update({
+        where: {
+            id: inputId
+        },
+        data: {
+            rating: Number(newRate)
+        }
+    })
+    revalidatePath('/')
+}
 export async function deletePlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     await prisma.place.delete({

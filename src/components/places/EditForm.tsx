@@ -24,32 +24,39 @@ const EditForm = ({ place }: { place: placeProps }) => {
     return (
         <Form action={actions.editPlace} onSubmit={handleSubmit}>
             <div className="flex justify-center flex-col items-center gap-2 px-6">
-                <Input name='inputId' value={place?.id} type='hidden'></Input>
+                <Input
+                    name='inputId'
+                    value={place?.id}
+                    type='hidden' />
                 <Input
                     name='newName'
                     placeholder='Edit Name'
-                    value={newName} onChange={setNewName}
+                    value={newName}
+                    onChange={setNewName}
                     type='text'
                     isEdit
                 />
                 <Input
                     name='newLocation'
                     placeholder='Edit Location'
-                    value={newLocation} onChange={setNewLocation}
+                    value={newLocation}
+                    onChange={setNewLocation}
                     type='text'
                     isEdit
                 />
                 <Input
                     name='newType'
                     placeholder='Edit Type'
-                    value={newType} onChange={setNewType}
+                    value={newType}
+                    onChange={setNewType}
                     type='text'
                     isEdit
                 />
                 <Input
                     name='newCuisine'
                     placeholder='Edit Cuisine'
-                    value={newCuisine} onChange={setNewCuisine}
+                    value={newCuisine}
+                    onChange={setNewCuisine}
                     type='text'
                     isEdit
                 />
@@ -67,17 +74,24 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     >
                         {({ open }) => {
                             return (
-                                <Button text={image ? "Upload A Different Image" : "Upload Image"} onClick={() => open()} bgColor='bg-red-400' actionButton />
-                                // <button onClick={() => open()}>
-                                //     Upload an Image
-                                // </button>
+                                <Button
+                                    text={image ? "Upload A Different Image" : "Upload Image"}
+                                    onClick={() => open()}
+                                    bgColor='bg-red-400'
+                                    actionButton />
                             );
                         }}
                     </CldUploadWidget>
                     {image ? (<img src={image} alt={''} />) : (<span>No Image selected</span>)}
                 </div>
-                <Input name='inputImage' value={image} type='hidden'></Input>
-                <Button type='submit' text="Save"></Button>
+                <Input
+                    name='inputImage'
+                    value={image}
+                    type='hidden' />
+                <Button
+                    type='submit'
+                    text="Save"
+                    bgColor='bg-red-400 w-full' />
             </div>
         </Form>
     )
