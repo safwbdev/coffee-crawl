@@ -29,6 +29,7 @@ export async function createdPlace(formData: FormData) {
     const type = formData.get("type") as string;
     const cuisine = formData.get("cuisine") as string;
     const inputImage = formData.get("inputImage") as string;
+    const socials = formData.get("inputSocials") as string
     if (!name.trim()) {
         return;
     }
@@ -40,6 +41,7 @@ export async function createdPlace(formData: FormData) {
             type: type,
             cuisine: cuisine,
             images: [inputImage],
+            socials: socials.split(','),
         }
     });
 

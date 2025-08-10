@@ -8,7 +8,9 @@ import RateModalButton from '../Modal/RateModalButton';
 import RateModal from '../Modal/RateModal';
 
 const SinglePage = ({ data }: { data: placeProps }) => {
-    const defaultImg = data?.images ? data?.images[0] : 'https://placehold.co/400x400?text=No+Image';
+
+    const defaultImg = data?.images && data?.images.length >= 1 && data?.images[0] !== '' ? data?.images[0] : 'https://placehold.co/400x400?text=No+Image';
+
     return (
         <>
             <div className="w-screen flex flex-col md:flex-row justify-center gap-5">

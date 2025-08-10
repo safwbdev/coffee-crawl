@@ -5,8 +5,10 @@ export interface InputProps {
     type: string;
     placeholder?: string;
     value?: string;
+    className?: string;
     onChange?: React.Dispatch<React.SetStateAction<string>>
     isEdit?: boolean
+    isSocial?: boolean
 }
 
 export interface formProps {
