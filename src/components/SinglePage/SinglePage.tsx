@@ -33,8 +33,8 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                                 <div className="lol">
                                     <span>Social Media</span>
                                     <ul>
-                                        {data.socials?.map((social) => (
-                                            <li className='border-2'>{social}</li>
+                                        {data.socials?.map((social, index) => (
+                                            <li className='border-2' key={index}>{social}</li>
                                         ))}
                                     </ul>
                                 </div>
