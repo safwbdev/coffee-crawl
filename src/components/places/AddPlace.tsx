@@ -19,15 +19,15 @@ const AddPlace = () => {
         setFormValues([...formValues, ""])
     }
 
-    const removeFormFields = (i: any) => {
-        let newFormValues = [...formValues];
+    const removeFormFields = (i: number) => {
+        const newFormValues = [...formValues];
         newFormValues.splice(i, 1);
         setFormValues(newFormValues)
     }
 
-    let handleChange = (i: number, e: any) => {
+    let handleChange = (i: number, e: string) => {
 
-        let newFormValues = [...formValues];
+        const newFormValues = [...formValues];
         newFormValues[i] = e;
         setFormValues(newFormValues);
     }
@@ -49,7 +49,10 @@ const AddPlace = () => {
                             name='socialMedia'
                             type='text'
                             placeholder='Enter social Media link'
-                            onChange={(e: any) => handleChange(index, e)} isSocial isEdit />
+                            onChange={(e) => {
+                                if (typeof e === 'string')
+                                    handleChange(index, e)
+                            }} isSocial isEdit />
                         {index > 0 && (
                             <Button
                                 type="button"
