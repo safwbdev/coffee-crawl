@@ -7,7 +7,8 @@ import * as actions from "@/actions"
 import { useCoffeeContext } from '@/context/CoffeeContext';
 import { placeProps } from '@/types'
 import { CldUploadWidget } from 'next-cloudinary';
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
+import { IoMdCloseCircle } from "react-icons/io";
 
 const EditForm = ({ place }: { place: placeProps }) => {
     const { setOpenEditModal } = useCoffeeContext();
@@ -16,6 +17,23 @@ const EditForm = ({ place }: { place: placeProps }) => {
     const [newType, setNewType] = useState<string>(place?.type || '')
     const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
     const [image, setImage] = useState<string | undefined>(place?.images ? place?.images[0] : undefined)
+    const [formValues, setFormValues] = useState<string[]>(place?.socials || [""]);
+
+    const addFormFields = () => {
+        setFormValues([...formValues, ""])
+    }
+
+    const removeFormFields = (i: number) => {
+        const newFormValues = [...formValues];
+        newFormValues.splice(i, 1);
+        setFormValues(newFormValues)
+    }
+
+    const handleChange = (i: number, e: string) => {
+        const newFormValues = [...formValues];
+        newFormValues[i] = e;
+        setFormValues(newFormValues);
+    }
 
     const handleSubmit = () => {
         setOpenEditModal(false);
@@ -62,6 +80,34 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     type='text'
                     isEdit
                 />
+                {formValues.map((element, index) => (
+                    <div className="flex items-center w-full" key={index}>
+                        <Input
+                            name='socialMedia'
+                            type='text'
+                            placeholder='Enter social Media link'
+                            value={formValues[index]}
+                            onChange={(e) => {
+                                if (typeof e === 'string')
+                                    handleChange(index, e)
+                            }} isSocial isEdit />
+                        {index > 0 && (
+                            <Button
+                                type="button"
+                                onClick={() => removeFormFields(index)}
+                                text={<IoMdCloseCircle size={30} className='text-red-400' />}
+                            />
+                        )}
+                    </div>
+
+                ))}
+                <div className="button-section">
+                    <Button text={"Add another"} type='button' bgColor='bg-red-400' onClick={() => addFormFields()} />
+                </div>
+                <input
+                    name={'inputSocials'}
+                    type={'hidden'}
+                    value={formValues} />
                 <div className="border-2 w-full flex justify-center flex-col items-center h-80 p-5">
                     <CldUploadWidget
                         uploadPreset="upload"

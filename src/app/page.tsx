@@ -12,11 +12,11 @@ import List from "@/components/List/List";
  * - responsiveness
  * - favorites page
  * - sort function
- * - social media
  * ====
  * DONE
  * ====
  * - navigation
+ * - social media
  * - rating modal & functionality
  * - image upload | cloudinary
  * - delete modal

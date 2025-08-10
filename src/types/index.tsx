@@ -35,6 +35,7 @@ export interface placeProps {
     isCompleted: boolean;
     favorite?: boolean;
     images?: string[];
+    socials?: string[];
     createdAt?: Date;
 
 }

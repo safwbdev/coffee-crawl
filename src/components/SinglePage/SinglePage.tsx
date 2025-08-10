@@ -28,6 +28,17 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                             {data.location}
                             <div className='py-2'>cuisine: {data.cuisine}</div>
                             <div>type: {data.type}</div>
+
+                            {data.socials && (
+                                <div className="lol">
+                                    <span>Social Media</span>
+                                    <ul>
+                                        {data.socials?.map((social) => (
+                                            <li className='border-2'>{social}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="flex flex-row-reverse justify-between">

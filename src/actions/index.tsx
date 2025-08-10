@@ -92,6 +92,7 @@ export async function editPlace(formData: FormData) {
     const newLocation = formData.get("newLocation") as string;
     const newCuisine = formData.get("newCuisine") as string;
     const inputImage = formData.get("inputImage") as string;
+    const socials = formData.get("inputSocials") as string
 
     await prisma.place.update({
         where: {
@@ -103,6 +104,7 @@ export async function editPlace(formData: FormData) {
             type: newType,
             cuisine: newCuisine,
             images: [inputImage],
+            socials: socials.split(','),
         }
     })
     revalidatePath('/')
