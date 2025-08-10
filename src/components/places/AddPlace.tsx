@@ -25,7 +25,7 @@ const AddPlace = () => {
         setFormValues(newFormValues)
     }
 
-    let handleChange = (i: number, e: string) => {
+    const handleChange = (i: number, e: string) => {
 
         const newFormValues = [...formValues];
         newFormValues[i] = e;
