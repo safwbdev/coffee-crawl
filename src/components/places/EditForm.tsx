@@ -123,6 +123,7 @@ const EditForm = ({ place }: { place: placeProps }) => {
                         {({ open }) => {
                             return (
                                 <Button
+                                    type='button'
                                     text={image ? "Upload A Different Image" : "Upload Image"}
                                     onClick={() => open()}
                                     bgColor='bg-red-400'
