@@ -36,11 +36,16 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
                     <Button onClick={() => setFilter(2)} text={'Completed'} bgColor='bg-green-400' actionButton />
                 </div>)}
                 <div className="flex flex-col gap-5 items-center justify-center mt-10 w-screen">
-                    {listData.map((place, id) => (
-                        <div className="w-full" key={id}>
-                            <Place place={place} />
-                        </div>
-                    ))}
+                    {listData.map((place, id) => {
+                        if (isFavorites && place.favorite) {
+                            return (
+                                <div className="w-full" key={id}>
+                                    <Place place={place} />
+                                </div>
+                            )
+                        }
+                    }
+                    )}
                 </div>
             </div>
             <DeleteModal />
