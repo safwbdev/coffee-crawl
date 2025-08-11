@@ -36,8 +36,8 @@ const SinglePage = ({ data }: { data: placeProps }) => {
     return (
         <>
             <div className="w-screen flex flex-col md:flex-row justify-center gap-5">
-                <div className="lol">
-                    <img src={defaultImg} />
+                <div className="image">
+                    <img src={defaultImg} className='w-full h-[300px] object-cover' />
                 </div>
                 <div className="px-4 md:px-0 md:py-2">
                     <h1 className="text-4xl font-extrabold uppercase mb-2 text-center flex items-center">
@@ -62,7 +62,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
                     </div>
-                    <div className={`flex gap-6 ${data.socials && data.socials.length > 0 ? 'justify-between' : 'justify-center'}`}>
+                    {/* <div className={`flex gap-6 ${data.socials && data.socials.length > 0 ? 'justify-between' : 'justify-center'}`}>
                         {data.socials && data.socials.length > 0 ? (
                             <div className="flex w-full justify-center">
                                 {data.socials?.map((social, index) => (
@@ -70,13 +70,20 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                                 ))}
                             </div>
                         ) : (<span>Socmed Unavailable</span>)}
-                    </div>
-                    <div className="flex flex-row-reverse justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
-                        <div className="">
-                            <FavoritePlace place={data} />
-                        </div>
+                    </div> */}
+                    <div className="flex flex-row justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
+                        {data.socials && data.socials.length > 0 && (
+                            <div className="flex w-full justify-center">
+                                {data.socials?.map((social, index) => (
+                                    <div className='border-0 justify-center flex' key={index}>{getSocial(social)}</div>
+                                ))}
+                            </div>
+                        )}
                         <div className="">
                             <RateModalButton place={data} />
+                        </div>
+                        <div className="">
+                            <FavoritePlace place={data} />
                         </div>
                     </div>
                 </div>

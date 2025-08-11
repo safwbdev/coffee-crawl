@@ -22,6 +22,28 @@ export async function getData() {
     });
     return data;
 }
+export async function getFavoriteData() {
+    const data = await prisma.place.findMany({
+        select: {
+            name: true,
+            id: true,
+            isCompleted: true,
+            location: true,
+            type: true,
+            cuisine: true,
+            socials: true,
+            images: true,
+            favorite: true,
+        },
+        where: {
+            favorite: true
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+    return data;
+}
 
 export async function createdPlace(formData: FormData) {
     const name = formData.get("name") as string;

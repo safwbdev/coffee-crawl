@@ -8,11 +8,11 @@ import List from "@/components/List/List";
  * TODO
  * ====
  * - responsiveness
- * - favorites page
  * - sort function
  * ====
  * DONE
  * ====
+ * - favorites page
  * - mobile layout
  * - single page layout
  * - navigation
