@@ -6,10 +6,32 @@ import FavoritePlace from '../places/FavoritePlace'
 import { placeProps } from '@/types'
 import RateModalButton from '../Modal/RateModalButton';
 import RateModal from '../Modal/RateModal';
+import { LuChefHat } from "react-icons/lu";
+import { FaGlassMartiniAlt } from "react-icons/fa";
+import Link from 'next/link';
+import Button from '../Button/Button';
+import { FaInstagram, FaFacebookSquare, FaGlobe } from "react-icons/fa";
 
 const SinglePage = ({ data }: { data: placeProps }) => {
 
     const defaultImg = data?.images && data?.images.length >= 1 && data?.images[0] !== '' ? data?.images[0] : 'https://placehold.co/400x400?text=No+Image';
+
+    const getSocial = (link: string) => {
+        if (link.includes('instagram')) {
+            return <Link target="_blank" href={link}>
+                <Button bgColor='bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] h-15 w-15 flex justify-center items-center' text={<FaInstagram size={30} />} />
+            </Link>
+        }
+        if (link.includes('facebook')) {
+            return <Link target="_blank" href={link}>
+                <Button bgColor='bg-blue-500 h-15 w-15 flex justify-center items-center' text={<FaFacebookSquare size={30} />} />
+            </Link>
+        } else {
+            return <Link target="_blank" href={link}>
+                <Button bgColor='bg-green-500 h-15 w-15 flex justify-center items-center' text={<FaGlobe size={30} />} />
+            </Link>
+        }
+    }
 
     return (
         <>
@@ -22,36 +44,43 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         <ChangePlace place={data} />
                         {data.name}
                     </h1>
-                    <div className='flex gap-6 justify-between'>
-                        <FaLocationArrow size={40} />
-                        <div className="lol">
+                    <div className='flex gap-3 justify-arround mb-3'>
+                        <div className="border-0 flex-1">
+                            <FaLocationArrow size={20} />
+                        </div>
+                        <div className="border-0 flex-15">
                             {data.location}
-                            <div className='py-2'>cuisine: {data.cuisine}</div>
-                            <div>type: {data.type}</div>
-
-                            {data.socials && (
-                                <div className="lol">
-                                    <span>Social Media</span>
-                                    <ul>
-                                        {data.socials?.map((social, index) => (
-                                            <li className='border-2' key={index}>{social}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
                         </div>
                     </div>
-                    <div className="flex flex-row-reverse justify-between">
+                    <div className='flex gap-3 justify-between mb-3'>
+                        <div className="border-0 flex-1"><LuChefHat size={20} /></div>
+                        <div className="border-0 flex-15">{data.cuisine}</div>
+                    </div>
+                    <div className='flex gap-3 justify-around mb-3'>
+                        <div className="border-0 flex-1">
+                            <FaGlassMartiniAlt size={20} />
+                        </div>
+                        <div className="border-0 flex-15">{data.type}</div>
+                    </div>
+                    <div className={`flex gap-6 ${data.socials && data.socials.length > 0 ? 'justify-between' : 'justify-center'}`}>
+                        {data.socials && data.socials.length > 0 ? (
+                            <div className="flex w-full justify-center">
+                                {data.socials?.map((social, index) => (
+                                    <div className='border-0 justify-center flex' key={index}>{getSocial(social)}</div>
+                                ))}
+                            </div>
+                        ) : (<span>Socmed Unavailable</span>)}
+                    </div>
+                    <div className="flex flex-row-reverse justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
                         <div className="">
                             <FavoritePlace place={data} />
                         </div>
                         <div className="">
                             <RateModalButton place={data} />
-                            {/* <h2 className='text-2xl font-extrabold'>{data.rating}/5</h2> */}
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <RateModal data={data} />
         </>
     )

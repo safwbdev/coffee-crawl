@@ -11,10 +11,10 @@ const FavoritePlace = ({ place }: { place: placeProps }) => {
         <Form action={actions.favoriteStatus}>
             <Input name='inputId' value={place.id} type='hidden'></Input>
             <Button
-                text={place.favorite ? <FaHeart className='text-red-500' /> : <FaRegHeart className='text-white' />}
+                text={place.favorite ? <FaHeart size={30} className='text-red-500' /> : <FaRegHeart size={30} className='text-white' />}
                 type='submit'
                 actionButton
-                bgColor={place.favorite ? 'bg-green-400' : 'bg-blue-500'}></Button>
+                bgColor={`h-15 w-15 flex items-center justify-center ${place.favorite ? 'bg-green-400' : 'bg-blue-500'}`}></Button>
         </Form>
     )
 }

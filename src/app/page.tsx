@@ -7,14 +7,14 @@ import List from "@/components/List/List";
  * ====
  * TODO
  * ====
- * - mobile layout
- * - single page layout
  * - responsiveness
  * - favorites page
  * - sort function
  * ====
  * DONE
  * ====
+ * - mobile layout
+ * - single page layout
  * - navigation
  * - social media
  * - rating modal & functionality
