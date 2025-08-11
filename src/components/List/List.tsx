@@ -29,25 +29,25 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
 
     return (
         <>
-            <div className="favoriteList">
+            <div className="list">
                 {!isFavorites && (<div className="flex items-center justify-center">
                     <Button onClick={() => setFilter(0)} text={'Clear filters'} actionButton />
                     <Button onClick={() => setFilter(1)} text={'Incomplete'} bgColor='bg-blue-500' actionButton />
                     <Button onClick={() => setFilter(2)} text={'Completed'} bgColor='bg-green-400' actionButton />
                 </div>)}
-                <div className="flex flex-col gap-5 items-center justify-center mt-10 w-screen">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
                     {listData.map((place, id) => {
                         if (!isFavorites) {
                             return (
                                 <div className="w-full" key={id}>
-                                    <Place place={place} />
+                                    <Place isList place={place} />
                                 </div>
                             )
                         }
                         if (isFavorites && place.favorite) {
                             return (
                                 <div className="w-full" key={id}>
-                                    <Place place={place} />
+                                    <Place isList place={place} />
                                 </div>
                             )
                         }

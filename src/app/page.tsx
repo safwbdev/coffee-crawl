@@ -42,9 +42,11 @@ export default async function Home() {
         <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
           <span className="text-4xl font-extrabold uppercase">Coffee Crawl</span>
         </h1>
-        <div className="flex justify-center flex-col items-center">
-          <List data={data} />
-        </div>
+        {/* <div */}
+        {/* // className="flex justify-center flex-col items-center" */}
+        {/* > */}
+        <List data={data} />
+        {/* </div> */}
       </div>
       {/* <AddModalButton />
       <AddModal /> */}
