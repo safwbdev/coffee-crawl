@@ -37,6 +37,13 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
                 </div>)}
                 <div className="flex flex-col gap-5 items-center justify-center mt-10 w-screen">
                     {listData.map((place, id) => {
+                        if (!isFavorites) {
+                            return (
+                                <div className="w-full" key={id}>
+                                    <Place place={place} />
+                                </div>
+                            )
+                        }
                         if (isFavorites && place.favorite) {
                             return (
                                 <div className="w-full" key={id}>
