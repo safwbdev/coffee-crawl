@@ -1,6 +1,4 @@
 import * as actions from "@/actions"
-// import AddModal from "@/components/Modal/AddModal";
-// import AddModalButton from "@/components/Modal/AddModalButton";
 import List from "@/components/List/List";
 
 /**
@@ -40,13 +38,11 @@ export default async function Home() {
   const data = await actions.getData();
 
   return (
-    <>
-      <div className="w-screen py-20 flex justify-center flex-col items-center">
-        <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
-          <span className="text-4xl font-extrabold uppercase">Coffee Crawl</span>
-        </h1>
-        <List data={data} />
-      </div>
-    </>
+    <div className="w-screen py-20 flex justify-center flex-col items-center">
+      <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
+        <span className="text-4xl font-extrabold uppercase">Coffee Crawl</span>
+      </h1>
+      <List data={data} />
+    </div>
   );
 }

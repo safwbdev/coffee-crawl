@@ -1,7 +1,7 @@
-import { useCoffeeContext } from '@/context/CoffeeContext';
 import React from 'react'
+import { useCoffeeContext } from '@/context/CoffeeContext';
 import { FaWindowClose } from 'react-icons/fa';
-import DeletePlace from '../places/DeletePlace';
+import DeleteForm from '../places/DeleteForm';
 import Button from '../Button/Button';
 
 const DeleteModal = () => {
@@ -27,7 +27,7 @@ const DeleteModal = () => {
                     <p>You are about to remove <span className='font-bold'>{placeToDelete?.name}</span>.</p>
                     <p>Are you sure you want to proceed?</p>
                     <div className="flex justify-around flex-row py-4">
-                        <DeletePlace />
+                        <DeleteForm />
                         <Button
                             type='button'
                             onClick={handleCancel}

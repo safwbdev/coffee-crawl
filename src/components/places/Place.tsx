@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { placeProps } from '@/types'
-import ChangePlace from './ChangePlace'
+import ChangeStatus from './ChangeStatus'
 import Button from '../Button/Button'
 import { MdEdit } from 'react-icons/md';
 import DeleteModalButton from '../Modal/DeleteModalButton'
@@ -16,7 +16,7 @@ const Place = ({ isList, place }: { isList?: boolean, place: placeProps }) => {
     return (
         <div style={placeStyle} className='w-10/12 mx-auto flex items-center justify-between bg-slate-900 py-4 px-5 rounded-2xl'>
             <div className="flex items-center mx-2 border-0">
-                <ChangePlace isList={isList} place={place} />
+                <ChangeStatus isList={isList} place={place} />
             </div>
             <div className="flex items-center mx-2 border-0">
                 <Link href={`places/${place.id}`}>

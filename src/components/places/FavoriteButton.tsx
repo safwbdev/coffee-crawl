@@ -6,7 +6,7 @@ import * as actions from "@/actions"
 import { placeProps } from '@/types'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-const FavoritePlace = ({ place }: { place: placeProps }) => {
+const FavoriteButton = ({ place }: { place: placeProps }) => {
     return (
         <Form action={actions.favoriteStatus}>
             <Input name='inputId' value={place.id} type='hidden'></Input>
@@ -19,4 +19,4 @@ const FavoritePlace = ({ place }: { place: placeProps }) => {
     )
 }
 
-export default FavoritePlace
+export default FavoriteButton

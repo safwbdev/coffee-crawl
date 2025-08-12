@@ -51,7 +51,8 @@ export async function createdPlace(formData: FormData) {
     const type = formData.get("type") as string;
     const cuisine = formData.get("cuisine") as string;
     const inputImage = formData.get("inputImage") as string;
-    const socials = formData.get("inputSocials") as string
+    const socials = formData.get("inputSocials") as string;
+
     if (!name.trim()) {
         return;
     }
@@ -75,7 +76,8 @@ export async function changeStatus(formData: FormData) {
         where: {
             id: inputId
         }
-    })
+    });
+
     const updatedStatus = !place?.isCompleted;
 
     await prisma.place.update({
@@ -88,13 +90,15 @@ export async function changeStatus(formData: FormData) {
     })
     revalidatePath('/')
 }
+
 export async function favoriteStatus(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const place = await prisma.place.findUnique({
         where: {
             id: inputId
         }
-    })
+    });
+
     const updatedStatus = !place?.favorite;
 
     await prisma.place.update({
@@ -104,9 +108,11 @@ export async function favoriteStatus(formData: FormData) {
         data: {
             favorite: updatedStatus
         }
-    })
-    revalidatePath('/')
+    });
+
+    revalidatePath('/');
 }
+
 export async function editPlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const newName = formData.get("newName") as string;
@@ -114,7 +120,7 @@ export async function editPlace(formData: FormData) {
     const newLocation = formData.get("newLocation") as string;
     const newCuisine = formData.get("newCuisine") as string;
     const inputImage = formData.get("inputImage") as string;
-    const socials = formData.get("inputSocials") as string
+    const socials = formData.get("inputSocials") as string;
 
     await prisma.place.update({
         where: {
@@ -128,13 +134,14 @@ export async function editPlace(formData: FormData) {
             images: [inputImage],
             socials: socials.split(','),
         }
-    })
-    revalidatePath('/')
+    });
+
+    revalidatePath('/');
 }
+
 export async function ratePlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const newRate = formData.get("newRate") as string;
-
 
     await prisma.place.update({
         where: {
@@ -143,17 +150,21 @@ export async function ratePlace(formData: FormData) {
         data: {
             rating: Number(newRate)
         }
-    })
-    revalidatePath('/')
+    });
+
+    revalidatePath('/');
 }
+
 export async function deletePlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
+
     await prisma.place.delete({
         where: {
             id: inputId
         }
-    })
-    revalidatePath('/')
+    });
+
+    revalidatePath('/');
 }
 
 export async function getDataById(id: string) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as actions from "@/actions"
-import EditPlace from '@/components/places/EditForm';
+import EditForm from '@/components/places/EditForm';
 
 const EditPlacePage = async ({ params }: { params: Promise<{ id: string }>; }) => {
 
@@ -13,7 +13,7 @@ const EditPlacePage = async ({ params }: { params: Promise<{ id: string }>; }) =
             <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
                 <span className="text-4xl font-extrabold uppercase">{data.name}</span>
             </h1>
-            <EditPlace place={data} />
+            <EditForm place={data} />
         </div>
     )
 }

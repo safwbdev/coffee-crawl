@@ -1,16 +1,14 @@
 'use client';
 import React from 'react'
-import ChangePlace from '../places/ChangePlace'
-import { FaLocationArrow } from 'react-icons/fa'
-import FavoritePlace from '../places/FavoritePlace'
 import { placeProps } from '@/types'
+import Link from 'next/link';
+import ChangeStatus from '../places/ChangeStatus'
+import FavoriteButton from '../places/FavoriteButton'
 import RateModalButton from '../Modal/RateModalButton';
 import RateModal from '../Modal/RateModal';
-import { LuChefHat } from "react-icons/lu";
-import { FaGlassMartiniAlt } from "react-icons/fa";
-import Link from 'next/link';
 import Button from '../Button/Button';
-import { FaInstagram, FaFacebookSquare, FaGlobe } from "react-icons/fa";
+import { FaInstagram, FaFacebookSquare, FaGlobe, FaGlassMartiniAlt, FaLocationArrow } from "react-icons/fa";
+import { LuChefHat } from "react-icons/lu";
 
 const SinglePage = ({ data }: { data: placeProps }) => {
 
@@ -41,7 +39,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                 </div>
                 <div className="px-4 md:px-0 md:py-2">
                     <h1 className="text-4xl font-extrabold uppercase mb-2 text-center flex items-center">
-                        <ChangePlace place={data} />
+                        <ChangeStatus place={data} />
                         {data.name}
                     </h1>
                     <div className='flex gap-3 justify-arround mb-3'>
@@ -62,15 +60,6 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
                     </div>
-                    {/* <div className={`flex gap-6 ${data.socials && data.socials.length > 0 ? 'justify-between' : 'justify-center'}`}>
-                        {data.socials && data.socials.length > 0 ? (
-                            <div className="flex w-full justify-center">
-                                {data.socials?.map((social, index) => (
-                                    <div className='border-0 justify-center flex' key={index}>{getSocial(social)}</div>
-                                ))}
-                            </div>
-                        ) : (<span>Socmed Unavailable</span>)}
-                    </div> */}
                     <div className="flex flex-row justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
                         {data.socials && data.socials.length > 0 && (
                             <div className="flex w-full justify-center">
@@ -83,7 +72,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                             <RateModalButton place={data} />
                         </div>
                         <div className="">
-                            <FavoritePlace place={data} />
+                            <FavoriteButton place={data} />
                         </div>
                     </div>
                 </div>
