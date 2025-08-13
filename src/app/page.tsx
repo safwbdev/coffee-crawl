@@ -9,11 +9,12 @@ import List from "@/components/List/List";
  * - responsiveness BUG ON FAVORITES MOBILE
  * - sort function (alphabetical, rating)
  * - filter/search by tags
- * - form layout
- * - tags on single page
  * ====
  * DONE
  * ====
+ * - add tag overloading bug
+ * - form layout
+ * - tags on single page
  * - Turn types into tags
  * - image upload redirect back bug
  * - favorites page

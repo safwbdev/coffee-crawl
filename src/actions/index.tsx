@@ -123,6 +123,7 @@ export async function editPlace(formData: FormData) {
     const newCuisine = formData.get("newCuisine") as string;
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
+    const tags = formData.get("inputTags") as string;
 
     await prisma.place.update({
         where: {
@@ -135,6 +136,7 @@ export async function editPlace(formData: FormData) {
             cuisine: newCuisine,
             images: [inputImage],
             socials: socials.split(','),
+            tags: tags.split(','),
         }
     });
 

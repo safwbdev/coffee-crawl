@@ -19,8 +19,9 @@ const AddPlace = () => {
     const addFormFields = () => {
         setFormValues([...formValues, ""])
     }
+
     const addTagFields = () => {
-        setTags([...tags, tagsValues])
+        setTags([...tags, tagsValues.toLowerCase()])
         setTagsValues("")
     }
 
@@ -41,6 +42,7 @@ const AddPlace = () => {
         newFormValues[i] = e;
         setFormValues(newFormValues);
     }
+
     const handleTags = (e: string) => {
         setTagsValues(e);
     }
@@ -50,15 +52,39 @@ const AddPlace = () => {
     }
 
     return (
-        <Form action={actions.createdPlace} onSubmit={handleSubmit}>
+        <Form
+            action={actions.createdPlace}
+            onSubmit={handleSubmit}
+            className='w-full md:w-1/2 mx-auto'>
             <div className="flex justify-center flex-col items-center gap-2 px-6">
-                <Input name='name' type='text' placeholder='Name' />
-                <Input name='location' type='text' placeholder='location' />
-                <Input name='type' type='text' placeholder='type' />
-                <Input name='cuisine' type='text' placeholder='cuisine' />
-                <div className="flex w-full  mx-2       border rounded-lg text-base bg-gray-700 border-gray-600" >
+                <Input
+                    name='name'
+                    type='text'
+                    placeholder='Name'
+                    label='Name'
+                />
+                <Input
+                    name='location'
+                    type='text'
+                    placeholder='Location'
+                    label='Location'
+                />
+                <Input
+                    name='type'
+                    type='text'
+                    placeholder='Type'
+                    label='Type'
+                />
+                <Input
+                    name='cuisine'
+                    type='text'
+                    placeholder='Cuisine'
+                    label='Cuisine'
+                />
+                <label>Tags</label>
+                <div className="flex flex-wrap w-full mx-2 border rounded-lg text-base bg-gray-700 border-gray-600" >
                     {tags.map((element, index) => (
-                        <div className="bg-red-400 flex items-center justify-around rounded p-1 my-4 ml-2" key={index}>{element}
+                        <div className="bg-red-400 flex items-center justify-around rounded p-1 my-2 ml-2" key={index}>{element}
                             <button
                                 type="button"
                                 onClick={() => removeTags(index)}
@@ -78,7 +104,6 @@ const AddPlace = () => {
                         onChange={(e) => handleTags(e.target.value)}
                     />
                 </div>
-
                 <input
                     name={'inputTags'}
                     type={'hidden'}
@@ -90,6 +115,7 @@ const AddPlace = () => {
                         bgColor='bg-red-400'
                         onClick={() => addTagFields()} />
                 </div>
+                <label>Socials</label>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>
                         <Input

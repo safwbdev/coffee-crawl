@@ -9,6 +9,7 @@ import { placeProps } from '@/types'
 import { CldUploadWidget } from 'next-cloudinary';
 import { redirect } from 'next/navigation';
 import { IoMdCloseCircle } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 
 const EditForm = ({ place }: { place: placeProps }) => {
     const { setOpenEditModal } = useCoffeeContext();
@@ -18,9 +19,16 @@ const EditForm = ({ place }: { place: placeProps }) => {
     const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
     const [image, setImage] = useState<string | undefined>(place?.images ? place?.images[0] : undefined)
     const [formValues, setFormValues] = useState<string[]>(place?.socials || [""]);
+    const [tagsValues, setTagsValues] = useState<string>("");
+    const [tags, setTags] = useState<string[]>(place?.tags || []);
 
     const addFormFields = () => {
         setFormValues([...formValues, ""])
+    }
+
+    const addTagFields = () => {
+        setTags([...tags, tagsValues.toLowerCase()])
+        setTagsValues("")
     }
 
     const removeFormFields = (i: number) => {
@@ -29,10 +37,20 @@ const EditForm = ({ place }: { place: placeProps }) => {
         setFormValues(newFormValues)
     }
 
+    const removeTags = (i: number) => {
+        const newFormValues = [...tags];
+        newFormValues.splice(i, 1);
+        setTags(newFormValues)
+    }
+
     const handleChange = (i: number, e: string) => {
         const newFormValues = [...formValues];
         newFormValues[i] = e;
         setFormValues(newFormValues);
+    }
+
+    const handleTags = (e: string) => {
+        setTagsValues(e);
     }
 
     const handleSubmit = () => {
@@ -42,7 +60,10 @@ const EditForm = ({ place }: { place: placeProps }) => {
     }
 
     return (
-        <Form action={actions.editPlace} onSubmit={handleSubmit}>
+        <Form
+            action={actions.editPlace}
+            onSubmit={handleSubmit}
+            className='w-full md:w-1/2 mx-auto'>
             <div className="flex justify-center flex-col items-center gap-2 px-6">
                 <Input
                     name='inputId'
@@ -50,7 +71,8 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     type='hidden' />
                 <Input
                     name='newName'
-                    placeholder='Edit Name'
+                    placeholder='Name'
+                    label='Name'
                     value={newName}
                     onChange={setNewName}
                     type='text'
@@ -58,7 +80,8 @@ const EditForm = ({ place }: { place: placeProps }) => {
                 />
                 <Input
                     name='newLocation'
-                    placeholder='Edit Location'
+                    placeholder='Location'
+                    label='Location'
                     value={newLocation}
                     onChange={setNewLocation}
                     type='text'
@@ -66,7 +89,8 @@ const EditForm = ({ place }: { place: placeProps }) => {
                 />
                 <Input
                     name='newType'
-                    placeholder='Edit Type'
+                    placeholder='Type'
+                    label='Type'
                     value={newType}
                     onChange={setNewType}
                     type='text'
@@ -74,12 +98,48 @@ const EditForm = ({ place }: { place: placeProps }) => {
                 />
                 <Input
                     name='newCuisine'
-                    placeholder='Edit Cuisine'
+                    placeholder='Cuisine'
+                    label='Cuisine'
                     value={newCuisine}
                     onChange={setNewCuisine}
                     type='text'
                     isEdit
                 />
+                <label>Tags</label>
+                <div className="flex flex-wrap w-full mx-2 border rounded-lg text-base bg-gray-700 border-gray-600" >
+                    {tags.map((element, index) => (
+                        <div className="bg-red-400 flex items-center justify-around rounded p-1 my-2 ml-2" key={index}>{element}
+                            <button
+                                type="button"
+                                onClick={() => removeTags(index)}
+                            >
+                                <IoClose size={30} className='text-white' />
+                            </button>
+                        </div>
+
+
+                    ))}
+                    <input
+                        name={'tags'}
+                        type={'text'}
+                        placeholder={'Add tags'}
+                        className='m-4'
+                        value={tagsValues}
+                        onChange={(e) => handleTags(e.target.value)}
+                    />
+                </div>
+                <input
+                    name={'inputTags'}
+                    type={'hidden'}
+                    value={tags} />
+                <div className="button-section">
+                    <Button
+                        text={"Add another"}
+                        type='button'
+                        bgColor='bg-red-400'
+                        onClick={() => addTagFields()} />
+                </div>
+                <label>Socials</label>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>
                         <Input

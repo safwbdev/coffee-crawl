@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface InputProps {
     name: string;
     type: string;
+    label?: string;
     placeholder?: string;
     value?: string;
     className?: string;
