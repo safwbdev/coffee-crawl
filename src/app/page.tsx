@@ -9,6 +9,7 @@ import List from "@/components/List/List";
  * - responsiveness BUG ON FAVORITES MOBILE
  * - sort function (alphabetical, rating)
  * - filter/search by tags
+ * - update img tags
  * ====
  * DONE
  * ====

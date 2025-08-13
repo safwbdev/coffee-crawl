@@ -62,7 +62,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                     </div>
                     <div className='flex mb-3'>
                         {data.tags?.map((tag, index) => (
-                            <div className="border-1 rounded-full p-2 mr-2 text-black bg-white">{tag}</div>
+                            <div className="border-1 rounded-full p-2 mr-2 text-black bg-white" key={index}>{tag}</div>
                         ))}
                     </div>
                     <div className="flex flex-row justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
