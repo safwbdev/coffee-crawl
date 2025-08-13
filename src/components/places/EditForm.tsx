@@ -13,7 +13,6 @@ import { IoClose } from "react-icons/io5";
 import Image from 'next/image';
 
 const EditForm = ({ place }: { place: placeProps }) => {
-    const { setOpenEditModal } = useCoffeeContext();
     const [newName, setNewName] = useState<string>(place?.name || '');
     const [newLocation, setNewLocation] = useState<string>(place?.location || '')
     const [newType, setNewType] = useState<string>(place?.type || '')
@@ -55,7 +54,6 @@ const EditForm = ({ place }: { place: placeProps }) => {
     }
 
     const handleSubmit = () => {
-        setOpenEditModal(false);
         setImage(undefined);
         redirect(`/places/${place.id}`);
     }
@@ -66,7 +64,7 @@ const EditForm = ({ place }: { place: placeProps }) => {
             onSubmit={handleSubmit}
             className='w-full md:w-1/2 mx-auto'>
             <div className="flex justify-center flex-col items-center gap-2 px-6">
-                <Input
+                <input
                     name='inputId'
                     value={place?.id}
                     type='hidden' />
@@ -151,7 +149,9 @@ const EditForm = ({ place }: { place: placeProps }) => {
                             onChange={(e) => {
                                 if (typeof e === 'string')
                                     handleChange(index, e)
-                            }} isSocial isEdit />
+                            }}
+                            isSocial
+                            isEdit />
                         {index > 0 && (
                             <Button
                                 type="button"
@@ -163,7 +163,11 @@ const EditForm = ({ place }: { place: placeProps }) => {
 
                 ))}
                 <div className="button-section">
-                    <Button text={"Add another"} type='button' bgColor='bg-red-400' onClick={() => addFormFields()} />
+                    <Button
+                        text={"Add another"}
+                        type='button'
+                        bgColor='bg-red-400'
+                        onClick={() => addFormFields()} />
                 </div>
                 <input
                     name={'inputSocials'}
@@ -192,7 +196,6 @@ const EditForm = ({ place }: { place: placeProps }) => {
                             );
                         }}
                     </CldUploadWidget>
-                    {/* {image ? (<img src={image} alt={''} />) : (<span>No Image selected</span>)} */}
                     {image ? (<Image
                         src={image}
                         className='h-full'
@@ -200,9 +203,10 @@ const EditForm = ({ place }: { place: placeProps }) => {
                         height={500}
                         alt='MainImage' />) : (<span>No Image selected</span>)}
                 </div>
-                <Input
+                <input
                     name='inputImage'
                     value={image}
+                    onChange={() => setImage(image)}
                     type='hidden' />
                 <Button
                     type='submit'

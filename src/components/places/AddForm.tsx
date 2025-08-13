@@ -11,7 +11,7 @@ import { IoMdCloseCircle, } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import Image from 'next/image';
 
-const AddPlace = () => {
+const AddForm = () => {
     const [image, setImage] = useState<string | undefined>(undefined)
     const [formValues, setFormValues] = useState<string[]>([""]);
     const [tagsValues, setTagsValues] = useState<string>("");
@@ -138,13 +138,16 @@ const AddPlace = () => {
 
                 ))}
                 <div className="button-section">
-                    <Button text={"Add another"} type='button' bgColor='bg-red-400' onClick={() => addFormFields()} />
+                    <Button
+                        text={"Add another"}
+                        type='button'
+                        bgColor='bg-red-400'
+                        onClick={() => addFormFields()} />
                 </div>
                 <input
                     name={'inputSocials'}
                     type={'hidden'}
                     value={formValues} />
-                {/* <Button type='button' onClick={() => console.log(formValues)} text="Check" bgColor='bg-red-600' /> */}
                 <div className="border-2 w-full flex justify-center flex-col items-center h-60 p-5">
                     <CldUploadWidget
                         uploadPreset="upload"
@@ -168,21 +171,23 @@ const AddPlace = () => {
                             );
                         }}
                     </CldUploadWidget>
-                    {/* {image ? (<img src={image} alt={''} className='h-full' />) : (<span>No Image selected</span>)} */}
                     {image ? (<Image
                         src={image}
                         className='h-full'
                         width={500}
                         height={500}
                         alt='MainImage' />) : (<span>No Image selected</span>)}
-                    <Input name='inputImage' value={image} type='hidden'></Input>
+                    <Input name='inputImage' value={image} type='hidden' />
                 </div>
                 <div className="flex flex-row">
-                    <Button type='submit' text="Add" bgColor='bg-blue-600' />
+                    <Button
+                        type='submit'
+                        text="Add"
+                        bgColor='bg-blue-600' />
                 </div>
             </div>
         </Form >
     )
 }
 
-export default AddPlace
+export default AddForm

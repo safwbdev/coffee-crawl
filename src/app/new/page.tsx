@@ -1,4 +1,4 @@
-import AddPlace from '@/components/places/AddPlace'
+import AddForm from '@/components/places/AddForm'
 import React from 'react'
 
 const New = () => {
@@ -7,7 +7,7 @@ const New = () => {
             <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
                 <span className="text-4xl font-extrabold uppercase">Add New place</span>
             </h1>
-            <AddPlace />
+            <AddForm />
         </div>
     )
 }

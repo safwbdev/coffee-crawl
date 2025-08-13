@@ -18,16 +18,22 @@ const SinglePage = ({ data }: { data: placeProps }) => {
     const getSocial = (link: string) => {
         if (link.includes('instagram')) {
             return <Link target="_blank" href={link}>
-                <Button bgColor='bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] h-15 w-15 flex justify-center items-center' text={<FaInstagram size={30} />} />
+                <Button
+                    bgColor='bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] h-15 w-15 flex justify-center items-center'
+                    text={<FaInstagram size={30} />} />
             </Link>
         }
         if (link.includes('facebook')) {
             return <Link target="_blank" href={link}>
-                <Button bgColor='bg-blue-500 h-15 w-15 flex justify-center items-center' text={<FaFacebookSquare size={30} />} />
+                <Button
+                    bgColor='bg-blue-500 h-15 w-15 flex justify-center items-center'
+                    text={<FaFacebookSquare size={30} />} />
             </Link>
         } else {
             return <Link target="_blank" href={link}>
-                <Button bgColor='bg-green-500 h-15 w-15 flex justify-center items-center' text={<FaGlobe size={30} />} />
+                <Button
+                    bgColor='bg-green-500 h-15 w-15 flex justify-center items-center'
+                    text={<FaGlobe size={30} />} />
             </Link>
         }
     }
@@ -36,7 +42,6 @@ const SinglePage = ({ data }: { data: placeProps }) => {
         <>
             <div className="w-screen flex flex-col md:flex-row justify-center gap-5">
                 <div className="image">
-                    {/* <img src={defaultImg} className='w-full h-[300px] object-cover' /> */}
                     <Image
                         src={defaultImg}
                         className='w-full h-[300px] object-cover'

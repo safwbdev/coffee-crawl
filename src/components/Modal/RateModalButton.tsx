@@ -10,7 +10,10 @@ const RateModalButton = ({ place }: { place: placeProps }) => {
         setOpenRatingModal(true);
     }
     return (
-        <Button onClick={handleRateModalButton} bgColor='bg-red-400 h-15 w-15 flex items-center justify-center' text={`${place.rating}/10`}></Button>
+        <Button
+            onClick={handleRateModalButton}
+            bgColor='bg-red-400 h-15 w-15 flex items-center justify-center'
+            text={`${place.rating}/10`} />
     )
 }
 

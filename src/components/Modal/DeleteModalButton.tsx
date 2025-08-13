@@ -12,7 +12,10 @@ const DeleteModalButton = ({ place }: { place: placeProps }) => {
         setPlaceToDelete(place)
     }
     return (
-        <Button onClick={handleDelete} bgColor='bg-red-400' text={<FaTrash />}></Button>
+        <Button
+            onClick={handleDelete}
+            bgColor='bg-red-400'
+            text={<FaTrash />} />
     )
 }
 

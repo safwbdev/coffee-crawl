@@ -1,6 +1,6 @@
 import React from 'react'
 import * as actions from "@/actions"
-import EditModalButton from '@/components/Modal/EditModalButton';
+import { MdEdit } from 'react-icons/md';
 import Link from 'next/link';
 import SinglePage from '@/components/SinglePage/SinglePage';
 
@@ -13,7 +13,9 @@ const Place = async ({ params }: { params: Promise<{ id: string }>; }) => {
         <>
             <SinglePage data={data} />
             <Link href={`/edit/${id}`}>
-                <EditModalButton />
+                <button className={`text-white-500 fixed top-5 right-5 cursor-pointer`}>
+                    <MdEdit size={20} />
+                </button>
             </Link>
         </>
     )

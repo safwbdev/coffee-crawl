@@ -28,7 +28,7 @@ const Place = ({ isList, isFavorite, place }: { isList?: boolean, isFavorite?: b
             </div>
             <div className="flex flex-col items-center border-0">
                 <Link href={`edit/${place.id}`}>
-                    <Button type='submit' bgColor='bg-purple-400 cursor-pointer' text={<MdEdit />}></Button>
+                    <Button type='submit' bgColor='bg-purple-400 cursor-pointer' text={<MdEdit />} />
                 </Link>
                 <DeleteModalButton place={place} />
             </div>
