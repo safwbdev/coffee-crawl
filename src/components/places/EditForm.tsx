@@ -10,6 +10,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { redirect } from 'next/navigation';
 import { IoMdCloseCircle } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import Image from 'next/image';
 
 const EditForm = ({ place }: { place: placeProps }) => {
     const { setOpenEditModal } = useCoffeeContext();
@@ -191,7 +192,13 @@ const EditForm = ({ place }: { place: placeProps }) => {
                             );
                         }}
                     </CldUploadWidget>
-                    {image ? (<img src={image} alt={''} />) : (<span>No Image selected</span>)}
+                    {/* {image ? (<img src={image} alt={''} />) : (<span>No Image selected</span>)} */}
+                    {image ? (<Image
+                        src={image}
+                        className='h-full'
+                        width={500}
+                        height={500}
+                        alt='MainImage' />) : (<span>No Image selected</span>)}
                 </div>
                 <Input
                     name='inputImage'

@@ -9,6 +9,7 @@ import RateModal from '../Modal/RateModal';
 import Button from '../Button/Button';
 import { FaInstagram, FaFacebookSquare, FaGlobe, FaGlassMartiniAlt, FaLocationArrow } from "react-icons/fa";
 import { LuChefHat } from "react-icons/lu";
+import Image from 'next/image';
 
 const SinglePage = ({ data }: { data: placeProps }) => {
 
@@ -35,7 +36,13 @@ const SinglePage = ({ data }: { data: placeProps }) => {
         <>
             <div className="w-screen flex flex-col md:flex-row justify-center gap-5">
                 <div className="image">
-                    <img src={defaultImg} className='w-full h-[300px] object-cover' />
+                    {/* <img src={defaultImg} className='w-full h-[300px] object-cover' /> */}
+                    <Image
+                        src={defaultImg}
+                        className='w-full h-[300px] object-cover'
+                        width={500}
+                        height={500}
+                        alt='MainImage' />
                 </div>
                 <div className="px-4 md:px-0 md:py-2">
                     <h1 className="text-4xl font-extrabold uppercase mb-2 text-center flex items-center">

@@ -9,6 +9,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { redirect } from 'next/navigation'
 import { IoMdCloseCircle, } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import Image from 'next/image';
 
 const AddPlace = () => {
     const [image, setImage] = useState<string | undefined>(undefined)
@@ -167,7 +168,13 @@ const AddPlace = () => {
                             );
                         }}
                     </CldUploadWidget>
-                    {image ? (<img src={image} alt={''} className='h-full' />) : (<span>No Image selected</span>)}
+                    {/* {image ? (<img src={image} alt={''} className='h-full' />) : (<span>No Image selected</span>)} */}
+                    {image ? (<Image
+                        src={image}
+                        className='h-full'
+                        width={500}
+                        height={500}
+                        alt='MainImage' />) : (<span>No Image selected</span>)}
                     <Input name='inputImage' value={image} type='hidden'></Input>
                 </div>
                 <div className="flex flex-row">
