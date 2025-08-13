@@ -5,18 +5,23 @@ import Form from '../Form/Form'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import * as actions from '@/actions'
-// import { useCoffeeContext } from '@/context/CoffeeContext'
 import { CldUploadWidget } from 'next-cloudinary';
 import { redirect } from 'next/navigation'
-import { IoMdCloseCircle } from "react-icons/io";
+import { IoMdCloseCircle, } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 
 const AddPlace = () => {
-    // const { setOpenAddModal } = useCoffeeContext();
     const [image, setImage] = useState<string | undefined>(undefined)
     const [formValues, setFormValues] = useState<string[]>([""]);
+    const [tagsValues, setTagsValues] = useState<string>("");
+    const [tags, setTags] = useState<string[]>([]);
 
     const addFormFields = () => {
         setFormValues([...formValues, ""])
+    }
+    const addTagFields = () => {
+        setTags([...tags, tagsValues])
+        setTagsValues("")
     }
 
     const removeFormFields = (i: number) => {
@@ -25,10 +30,19 @@ const AddPlace = () => {
         setFormValues(newFormValues)
     }
 
+    const removeTags = (i: number) => {
+        const newFormValues = [...tags];
+        newFormValues.splice(i, 1);
+        setTags(newFormValues)
+    }
+
     const handleChange = (i: number, e: string) => {
         const newFormValues = [...formValues];
         newFormValues[i] = e;
         setFormValues(newFormValues);
+    }
+    const handleTags = (e: string) => {
+        setTagsValues(e);
     }
 
     const handleSubmit = () => {
@@ -42,6 +56,40 @@ const AddPlace = () => {
                 <Input name='location' type='text' placeholder='location' />
                 <Input name='type' type='text' placeholder='type' />
                 <Input name='cuisine' type='text' placeholder='cuisine' />
+                <div className="flex w-full  mx-2       border rounded-lg text-base bg-gray-700 border-gray-600" >
+                    {tags.map((element, index) => (
+                        <div className="bg-red-400 flex items-center justify-around rounded p-1 my-4 ml-2" key={index}>{element}
+                            <button
+                                type="button"
+                                onClick={() => removeTags(index)}
+                            >
+                                <IoClose size={30} className='text-white' />
+                            </button>
+                        </div>
+
+
+                    ))}
+                    <input
+                        name={'tags'}
+                        type={'text'}
+                        placeholder={'Add tags'}
+                        className='m-4'
+                        value={tagsValues}
+                        onChange={(e) => handleTags(e.target.value)}
+                    />
+                </div>
+
+                <input
+                    name={'inputTags'}
+                    type={'hidden'}
+                    value={tags} />
+                <div className="button-section">
+                    <Button
+                        text={"Add another"}
+                        type='button'
+                        bgColor='bg-red-400'
+                        onClick={() => addTagFields()} />
+                </div>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>
                         <Input
@@ -100,7 +148,7 @@ const AddPlace = () => {
                     <Button type='submit' text="Add" bgColor='bg-blue-600' />
                 </div>
             </div>
-        </Form>
+        </Form >
     )
 }
 

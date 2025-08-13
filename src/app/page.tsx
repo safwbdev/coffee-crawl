@@ -7,11 +7,14 @@ import List from "@/components/List/List";
  * ====
  * - responsiveness
  * - responsiveness BUG ON FAVORITES MOBILE
- * - sort function
- * - Turn types into tags
+ * - sort function (alphabetical, rating)
+ * - filter/search by tags
+ * - form layout
+ * - tags on single page
  * ====
  * DONE
  * ====
+ * - Turn types into tags
  * - image upload redirect back bug
  * - favorites page
  * - mobile layout

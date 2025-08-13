@@ -6,17 +6,20 @@ import Button from '../Button/Button'
 import { MdEdit } from 'react-icons/md';
 import DeleteModalButton from '../Modal/DeleteModalButton'
 
-const Place = ({ isList, place }: { isList?: boolean, place: placeProps }) => {
+const Place = ({ isList, isFavorite, place }: { isList?: boolean, isFavorite?: boolean, place: placeProps }) => {
     const placeStyle = {
-        textDecoration: place.isCompleted ? "line-through" : "none",
-        opacity: place.isCompleted ? 0.5 : 1
+        textDecoration: place.isCompleted && !isFavorite ? "line-through" : "none",
+        opacity: place.isCompleted && !isFavorite ? 0.5 : 1
     }
 
 
     return (
         <div style={placeStyle} className='w-10/12 mx-auto flex items-center justify-between bg-slate-900 py-4 px-5 rounded-2xl'>
             <div className="flex items-center mx-2 border-0">
-                <ChangeStatus isList={isList} place={place} />
+                <ChangeStatus
+                    place={place}
+                    isList={isList}
+                    isFavorite={isFavorite} />
             </div>
             <div className="flex items-center mx-2 border-0">
                 <Link href={`places/${place.id}`}>

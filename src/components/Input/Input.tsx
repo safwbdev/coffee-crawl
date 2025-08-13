@@ -11,7 +11,7 @@ const Input = ({ name, type, placeholder, value, onChange, isEdit, className, is
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className={`block w-full ${!isSocial ? 'p-4 mx-2' : 'p-4'} border rounded-lfg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white mb-5 ${className}`}
+            className={`block w-full ${!isSocial ? 'p-4 mx-2' : 'p-4'} border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white mb-5 ${className}`}
         />)
 
     } else {
@@ -20,7 +20,7 @@ const Input = ({ name, type, placeholder, value, onChange, isEdit, className, is
             type={type}
             placeholder={placeholder}
             value={value}
-            className={`block w-full ${!isSocial ? 'p-4 mx-2' : 'p-4'} border rounded-lfg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white mb-5 ${className}`}
+            className={`block w-full ${!isSocial ? 'p-4 mx-2' : 'p-4'} border rounded-lg text-base bg-gray-700 border-gray-600 placeholder-gray-400 text-white mb-5 ${className}`}
         />)
     }
 

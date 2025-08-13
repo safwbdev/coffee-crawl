@@ -52,6 +52,7 @@ export async function createdPlace(formData: FormData) {
     const cuisine = formData.get("cuisine") as string;
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
+    const tags = formData.get("inputTags") as string;
 
     if (!name.trim()) {
         return;
@@ -65,6 +66,7 @@ export async function createdPlace(formData: FormData) {
             cuisine: cuisine,
             images: [inputImage],
             socials: socials.split(','),
+            tags: tags.split(','),
         }
     });
 

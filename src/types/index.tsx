@@ -24,6 +24,7 @@ export interface buttonProps {
     onClick?: () => void;
     actionButton?: boolean;
     bgColor?: string;
+    isDisabled?: boolean;
 }
 export interface placeProps {
     id: string
@@ -36,6 +37,7 @@ export interface placeProps {
     favorite?: boolean;
     images?: string[];
     socials?: string[];
+    tags?: string[];
     createdAt?: Date;
 
 }

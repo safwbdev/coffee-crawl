@@ -21,6 +21,7 @@ model Place {
   cuisine String? @default("NA")
   rating Int @default(0)
   socials String[] @default([])
+  tags String[] @default([])
   images String[] @default([])
   favorite Boolean @default(false)
   isCompleted Boolean @default(false)

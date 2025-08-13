@@ -47,7 +47,10 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
                         if (isFavorites && place.favorite) {
                             return (
                                 <div className="w-full" key={id}>
-                                    <Place isList place={place} />
+                                    <Place
+                                        isList
+                                        place={place}
+                                        isFavorite={isFavorites} />
                                 </div>
                             )
                         }
