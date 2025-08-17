@@ -41,7 +41,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
     return (
         <>
             <div className="w-screen flex flex-col md:flex-row justify-center gap-5">
-                <div className="image">
+                <div className="flex">
                     <Image
                         src={defaultImg}
                         className='w-full h-[300px] object-cover'
@@ -54,8 +54,23 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         <ChangeStatus place={data} />
                         {data.name}
                     </h1>
+                    <div className='flex mb-3 justify-between md:justify-start'>
+                        {data.socials && data.socials.length > 0 && (
+                            <div className="flex justify-center">
+                                {data.socials?.map((social, index) => (
+                                    <div className='justify-center flex' key={index}>{getSocial(social)}</div>
+                                ))}
+                            </div>
+                        )}
+                        <div className="flex">
+                            <RateModalButton place={data} />
+                        </div>
+                        <div className="flex">
+                            <FavoriteButton place={data} />
+                        </div>
+                    </div>
                     <div className='flex gap-3 justify-arround mb-3'>
-                        <div className="border-0 flex-1">
+                        <div className="border-0 flex-1 flex md:justify-center">
                             <FaLocationArrow size={20} />
                         </div>
                         <div className="border-0 flex-15">
@@ -63,35 +78,23 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         </div>
                     </div>
                     <div className='flex gap-3 justify-between mb-3'>
-                        <div className="border-0 flex-1"><LuChefHat size={20} /></div>
+                        <div className="border-0 flex-1 flex md:justify-center">
+                            <LuChefHat size={20} />
+                        </div>
                         <div className="border-0 flex-15">{data.cuisine}</div>
                     </div>
                     <div className='flex gap-3 justify-around mb-3'>
-                        <div className="border-0 flex-1">
+                        <div className="border-0 flex-1 flex md:justify-center">
                             <FaGlassMartiniAlt size={20} />
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
                     </div>
-                    <div className='flex mb-3'>
+                    {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex'>
                         {data.tags?.map((tag, index) => (
                             <div className="border-1 rounded-full p-2 mr-2 text-black bg-white" key={index}>{tag}</div>
                         ))}
-                    </div>
-                    <div className="flex flex-row justify-center absolute bottom-10 left-1/2 left-1/2 -translate-1/2">
-                        {data.socials && data.socials.length > 0 && (
-                            <div className="flex w-full justify-center">
-                                {data.socials?.map((social, index) => (
-                                    <div className='border-0 justify-center flex' key={index}>{getSocial(social)}</div>
-                                ))}
-                            </div>
-                        )}
-                        <div className="">
-                            <RateModalButton place={data} />
-                        </div>
-                        <div className="">
-                            <FavoriteButton place={data} />
-                        </div>
-                    </div>
+                    </div>)}
+                    <div className="h-30"></div>
                 </div>
             </div >
             <RateModal data={data} />

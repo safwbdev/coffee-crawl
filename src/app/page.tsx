@@ -5,14 +5,16 @@ import List from "@/components/List/List";
  * ====
  * TODO
  * ====
- * - responsiveness
- * - responsiveness BUG ON FAVORITES MOBILE
+ * - user login
+ * - authentication
  * - sort function (alphabetical, rating)
  * - filter/search by tags
- * - update img tags
  * ====
  * DONE
  * ====
+ * - responsiveness
+ * - responsiveness BUG ON FAVORITES MOBILE
+ * - update img tags
  * - add tag overloading bug
  * - form layout
  * - tags on single page
