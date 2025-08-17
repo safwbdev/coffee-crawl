@@ -1,12 +1,13 @@
 import * as actions from "@/actions"
 import List from "@/components/List/List";
+import Title from "@/components/Title";
 
 /**
  * ====
  * TODO
  * ====
  * - user login
- * - authentication
+ * - authentication (Clerk)
  * - sort function (alphabetical, rating)
  * - filter/search by tags
  * ====
@@ -46,9 +47,7 @@ export default async function Home() {
 
   return (
     <div className="w-screen py-20 flex justify-center flex-col items-center">
-      <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
-        <span className="text-4xl font-extrabold uppercase">Coffee Crawl</span>
-      </h1>
+      <Title text="Coffee Crawl" />
       <List data={data} />
     </div>
   );
