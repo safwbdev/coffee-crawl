@@ -89,9 +89,9 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
                     </div>
-                    {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex'>
+                    {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex flex-wrap'>
                         {data.tags?.map((tag, index) => (
-                            <div className="border-1 rounded-full p-2 mr-2 text-black bg-white" key={index}>{tag}</div>
+                            <div className="border-1 rounded-full p-2 mr-2 mb-2 text-black bg-white uppercase " key={index}>{tag}</div>
                         ))}
                     </div>)}
                     <div className="h-30"></div>
