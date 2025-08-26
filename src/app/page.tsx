@@ -44,11 +44,12 @@ import Title from "@/components/Title";
 export default async function Home() {
 
   const data = await actions.getData();
+  const tags = await actions.getTagCollection();
 
   return (
     <div className="w-screen py-20 flex justify-center flex-col items-center">
       <Title text="Coffee Crawl" />
-      <List data={data} />
+      <List data={data} tags={tags[0].tag} />
     </div>
   );
 }

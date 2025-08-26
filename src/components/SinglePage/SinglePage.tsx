@@ -10,6 +10,7 @@ import Button from '../Button/Button';
 import { FaInstagram, FaFacebookSquare, FaGlobe, FaGlassMartiniAlt, FaLocationArrow } from "react-icons/fa";
 import { LuChefHat } from "react-icons/lu";
 import Image from 'next/image';
+import TagSection from '../TagSection/TagSection';
 
 const SinglePage = ({ data }: { data: placeProps }) => {
 
@@ -89,11 +90,12 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
                     </div>
-                    {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex flex-wrap'>
+                    {data.tags && data.tags.length !== 0 && <TagSection data={data.tags} />}
+                    {/* {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex flex-wrap'>
                         {data.tags?.map((tag, index) => (
-                            <div className="border-1 rounded-full p-2 mr-2 mb-2 text-black bg-white uppercase " key={index}>{tag}</div>
+                            <div className="rounded-lg p-2 mr-2 mb-2 text-black bg-white capitalize" key={index}>{tag}</div>
                         ))}
-                    </div>)}
+                    </div>)} */}
                     <div className="h-30"></div>
                 </div>
             </div >

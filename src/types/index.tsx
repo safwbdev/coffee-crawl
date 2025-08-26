@@ -42,3 +42,6 @@ export interface placeProps {
     createdAt?: Date;
 
 }
+export interface tagProps {
+    tag: string;
+}

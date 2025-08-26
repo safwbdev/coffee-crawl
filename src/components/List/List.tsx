@@ -4,11 +4,14 @@ import Place from '../places/Place'
 import { placeProps } from '@/types'
 import Button from '../Button/Button'
 import DeleteModal from '../Modal/DeleteModal'
+import { useCoffeeContext } from '@/context/CoffeeContext'
+import TagSection from '../TagSection/TagSection'
 
-const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[] }) => {
+const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeProps[], tags: string[] }) => {
 
     const [listData, setlistData] = useState(data)
-    const [filter, setFilter] = useState(0);
+    const { filter, setFilter, tagArray, setTagArray } = useCoffeeContext();
+
 
     useEffect(() => {
         switch (filter) {
@@ -27,6 +30,11 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
         }
     }, [filter, data])
 
+    useEffect(() => {
+        if (isFavorites) setTagArray([]);
+    }, [isFavorites])
+
+
     return (
         <>
             <div className="list">
@@ -34,6 +42,7 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
                     <Button
                         onClick={() => setFilter(0)}
                         text={'Clear filters'}
+                        bgColor='border-1'
                         actionButton />
                     <Button
                         onClick={() => setFilter(1)}
@@ -46,14 +55,17 @@ const List = ({ isFavorites, data }: { isFavorites?: boolean, data: placeProps[]
                         bgColor='bg-green-400'
                         actionButton />
                 </div>)}
+                {!isFavorites && <TagSection data={tags} isCentered />}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
                     {listData.map((place, id) => {
                         if (!isFavorites) {
-                            return (
-                                <div className="w-full" key={id}>
-                                    <Place isList place={place} />
-                                </div>
-                            )
+                            if (tagArray.length == 0 || (tagArray.length !== 0 && tagArray.every(color => place.tags && place.tags.includes(color)))) {
+                                return (
+                                    <div className="w-full" key={id}>
+                                        <Place isList place={place} />
+                                    </div>
+                                )
+                            }
                         }
                         if (isFavorites && place.favorite) {
                             return (

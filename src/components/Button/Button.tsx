@@ -15,7 +15,7 @@ const Button = ({
             <button
                 className={clsx(
                     actionButton &&
-                    'text-white hover:bg-blue focus:ring-4 font-medium founded-lg text-sm px-2 py-2 me-2 mb-2 focus:outline-none cursor-pointer',
+                    'text-white hover:bg-blue focus:ring-4 font-medium rounded-lg text-sm px-2 py-2 me-2 mb-2 focus:outline-none cursor-pointer',
                     `${bgColor} hover:${bgColor} font-medium founded-lg text-sm px-2 py-2 me-2 mb-2 focus:outline-none rounded-lg`
                 )}
                 disabled={isDisabled}

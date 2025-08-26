@@ -12,6 +12,8 @@ type ThemeContextType = {
     setFilter: React.Dispatch<React.SetStateAction<number>>;
     placeToDelete: placeProps | undefined;
     setPlaceToDelete: React.Dispatch<React.SetStateAction<placeProps | undefined>>;
+    tagArray: string[];
+    setTagArray: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const coffeeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -20,6 +22,7 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
     const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
     const [openRatingModal, setOpenRatingModal] = useState<boolean>(false);
     const [filter, setFilter] = useState<number>(0);
+    const [tagArray, setTagArray] = useState<string[]>([])
     const [placeToDelete, setPlaceToDelete] = useState<placeProps | undefined>(undefined);
 
     const values = useMemo(() => ({
@@ -31,6 +34,8 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         setPlaceToDelete,
         openRatingModal,
         setOpenRatingModal,
+        tagArray,
+        setTagArray
     }), [
         filter,
         setFilter,
@@ -40,6 +45,8 @@ const CoffeeContext = ({ children }: { children: React.ReactNode }) => {
         setPlaceToDelete,
         openRatingModal,
         setOpenRatingModal,
+        tagArray,
+        setTagArray
     ])
 
 

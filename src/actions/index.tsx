@@ -14,11 +14,21 @@ export async function getData() {
             cuisine: true,
             socials: true,
             images: true,
+            tags: true,
             favorite: true,
         },
         orderBy: {
             createdAt: 'desc'
         }
+    });
+    return data;
+}
+
+export async function getTagCollection() {
+    const data = await prisma.tag.findMany({
+        select: {
+            tag: true,
+        },
     });
     return data;
 }
@@ -45,7 +55,38 @@ export async function getFavoriteData() {
     return data;
 }
 
+// export async function createdTag(tagData: string[]) {
+//     console.log('CREATED TAG');
+//     await prisma.tag.create({
+//         data: {
+//             tag: tagData
+//         }
+//     });
+
+
+// }
+export async function editTag() {
+    const inputId = process.env.TAG_ID;
+    // const inputId = formData.get("inputId") as string;
+
+    const updatedTags = ["updatedTags"];
+
+
+    await prisma.tag.update({
+        where: {
+            id: inputId
+        },
+        data: {
+            tag: updatedTags
+        }
+    })
+    revalidatePath('/')
+
+
+}
+
 export async function createdPlace(formData: FormData) {
+
     const name = formData.get("name") as string;
     const location = formData.get("location") as string;
     const type = formData.get("type") as string;
@@ -53,6 +94,17 @@ export async function createdPlace(formData: FormData) {
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
     const tags = formData.get("inputTags") as string;
+
+    const tagArray = tags.split(',');
+
+    // const tagCollection = await getTagCollection();
+
+    // let newTagFound = false;
+    // console.log('CREATED PLACe: ', tagCollection);
+
+
+    // TODO : add new tags to main tag array then upload main tag array
+    // editTag();
 
     if (!name.trim()) {
         return;
@@ -66,9 +118,34 @@ export async function createdPlace(formData: FormData) {
             cuisine: cuisine,
             images: [inputImage],
             socials: socials.split(','),
-            tags: tags.split(','),
+            // tags: tags.split(','),
+            tags: tagArray,
         }
     });
+
+    // const filteredArray = tagCollection.filter(({ tag }) => {
+    //     console.log('filtering:', tag);
+
+    //     if (tag) {
+    //         !tagArray.includes(tag)
+    //         newTagFound = true;
+    //     }
+    // });
+    // const uniqueArray = array.filter((item, index) => array.indexOf(item) === index);
+
+
+    // if (newTagFound) {
+    //     filteredArray.map(({ tag }) => {
+    //         console.log('momom');
+
+    //         if (tag) {
+    //             createdTag(tag);
+    //             newTagFound = false;
+    //         }
+    //     })
+    // }
+
+
 
     revalidatePath('/');
 }
