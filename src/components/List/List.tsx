@@ -7,7 +7,7 @@ import DeleteModal from '../Modal/DeleteModal'
 import { useCoffeeContext } from '@/context/CoffeeContext'
 import TagSection from '../TagSection/TagSection'
 
-const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeProps[], tags: string[] }) => {
+const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeProps[], tags?: string[] }) => {
 
     const [listData, setlistData] = useState(data)
     const { filter, setFilter, tagArray, setTagArray } = useCoffeeContext();
@@ -55,7 +55,7 @@ const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeP
                         bgColor='bg-green-400'
                         actionButton />
                 </div>)}
-                {!isFavorites && <TagSection data={tags} isCentered />}
+                {!isFavorites && tags && <TagSection data={tags} isCentered />}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
                     {listData.map((place, id) => {
                         if (!isFavorites) {
