@@ -9,10 +9,10 @@ import Title from "@/components/Title";
  * - user login
  * - authentication (Clerk)
  * - sort function (alphabetical, rating)
- * - filter/search by tags
  * ====
  * DONE
  * ====
+ * - filter/search by tags
  * - responsiveness
  * - responsiveness BUG ON FAVORITES MOBILE
  * - update img tags

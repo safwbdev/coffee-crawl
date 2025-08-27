@@ -12,6 +12,11 @@ const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeP
     const [listData, setlistData] = useState(data)
     const { filter, setFilter, tagArray, setTagArray } = useCoffeeContext();
 
+    const buttons = [
+        { label: 'Clear', style: 'border-1' },
+        { label: 'Incomplete', style: 'bg-blue-500' },
+        { label: 'Completed', style: 'bg-green-400' }
+    ]
 
     useEffect(() => {
         switch (filter) {
@@ -39,21 +44,16 @@ const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeP
         <>
             <div className="list">
                 {!isFavorites && (<div className="flex items-center justify-center">
-                    <Button
-                        onClick={() => setFilter(0)}
-                        text={'Clear filters'}
-                        bgColor='border-1'
-                        actionButton />
-                    <Button
-                        onClick={() => setFilter(1)}
-                        text={'Incomplete'}
-                        bgColor='bg-blue-500'
-                        actionButton />
-                    <Button
-                        onClick={() => setFilter(2)}
-                        text={'Completed'}
-                        bgColor='bg-green-400'
-                        actionButton />
+                    {buttons.map((but, index) => (
+                        <Button
+                            actionButton
+                            bgColor={but.style}
+                            key={index}
+                            onClick={() => setFilter(index)}
+                            text={but.label}
+                        />
+
+                    ))}
                 </div>)}
                 {!isFavorites && tags && <TagSection data={tags} isCentered />}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
