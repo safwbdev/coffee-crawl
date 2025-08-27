@@ -1,34 +1,67 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../Button/Button';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import * as actions from "@/actions"
-import { useCoffeeContext } from '@/context/CoffeeContext';
 import { placeProps } from '@/types'
 import { CldUploadWidget } from 'next-cloudinary';
 import { redirect } from 'next/navigation';
 import { IoMdCloseCircle } from "react-icons/io";
-import { IoClose } from "react-icons/io5";
 import Image from 'next/image';
+import { ReactTags, TagSuggestion } from 'react-tag-autocomplete'
+import './Form.css'
 
-const EditForm = ({ place }: { place: placeProps }) => {
+const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: string[] }) => {
     const [newName, setNewName] = useState<string>(place?.name || '');
     const [newLocation, setNewLocation] = useState<string>(place?.location || '')
     const [newType, setNewType] = useState<string>(place?.type || '')
     const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
     const [image, setImage] = useState<string | undefined>(place?.images ? place?.images[0] : undefined)
     const [formValues, setFormValues] = useState<string[]>(place?.socials || [""]);
-    const [tagsValues, setTagsValues] = useState<string>("");
-    const [tags, setTags] = useState<string[]>(place?.tags || []);
+    const [tagArray, setTagArray] = useState<TagSuggestion[]>([]);
+    const [selected, setSelected] = useState<TagSuggestion[]>([])
+    const [tags, setTags] = useState<string[]>([]);
+
+
+    useEffect(() => {
+        if (!place) return
+        const tempArr: TagSuggestion[] = [];
+        place?.tags && place?.tags.map((tag, index) => tempArr.push({ value: index + 1, label: tag }))
+        if (tempArr) setSelected(tempArr)
+    }, [place]);
+
+
+    useEffect(() => {
+        const tempArr: TagSuggestion[] = [];
+        tagCollection.map((tag, index) => tempArr.push({ value: index + 1, label: tag }))
+        if (tempArr) setTagArray(tempArr)
+    }, [tagCollection]);
+
+    useEffect(() => {
+        const tempArr: string[] = [];
+        selected.map((selectedTags) => tempArr.push(selectedTags.label))
+        if (tempArr) setTags(tempArr)
+    }, [selected]);
+
+
+    const onAdd = useCallback(
+        (newTag: TagSuggestion) => {
+            setSelected([...selected, newTag])
+        },
+        [selected]
+    )
+
+    const onDelete = useCallback(
+        (tagIndex: number) => {
+            setSelected(selected.filter((_, i) => i !== tagIndex))
+        },
+        [selected]
+    )
+
 
     const addFormFields = () => {
         setFormValues([...formValues, ""])
-    }
-
-    const addTagFields = () => {
-        setTags([...tags, tagsValues.toLowerCase()])
-        setTagsValues("")
     }
 
     const removeFormFields = (i: number) => {
@@ -37,20 +70,10 @@ const EditForm = ({ place }: { place: placeProps }) => {
         setFormValues(newFormValues)
     }
 
-    const removeTags = (i: number) => {
-        const newFormValues = [...tags];
-        newFormValues.splice(i, 1);
-        setTags(newFormValues)
-    }
-
     const handleChange = (i: number, e: string) => {
         const newFormValues = [...formValues];
         newFormValues[i] = e;
         setFormValues(newFormValues);
-    }
-
-    const handleTags = (e: string) => {
-        setTagsValues(e);
     }
 
     const handleSubmit = () => {
@@ -105,39 +128,21 @@ const EditForm = ({ place }: { place: placeProps }) => {
                     isEdit
                 />
                 <label>Tags</label>
-                <div className="flex flex-wrap w-full mx-2 border rounded-lg text-base bg-gray-700 border-gray-600" >
-                    {tags.map((element, index) => (
-                        <div className="bg-red-400 flex items-center justify-around rounded p-1 my-2 ml-2" key={index}>{element}
-                            <button
-                                type="button"
-                                onClick={() => removeTags(index)}
-                            >
-                                <IoClose size={30} className='text-white' />
-                            </button>
-                        </div>
-
-
-                    ))}
-                    <input
-                        name={'tags'}
-                        type={'text'}
-                        placeholder={'Add tags'}
-                        className='m-4'
-                        value={tagsValues}
-                        onChange={(e) => handleTags(e.target.value)}
-                    />
-                </div>
+                <ReactTags
+                    labelText="Tags"
+                    selected={selected}
+                    suggestions={tagArray}
+                    onAdd={onAdd}
+                    onDelete={onDelete}
+                    deleteButtonText="Remove %value% from the list"
+                    noOptionsText="No matching countries"
+                    ariaDeletedText="Removed tag %value%"
+                    newOptionText="Add %value%"
+                />
                 <input
                     name={'inputTags'}
                     type={'hidden'}
                     value={tags} />
-                <div className="button-section">
-                    <Button
-                        text={"Add another"}
-                        type='button'
-                        bgColor='bg-red-400'
-                        onClick={() => addTagFields()} />
-                </div>
                 <label>Socials</label>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>

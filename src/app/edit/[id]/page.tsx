@@ -7,13 +7,14 @@ const EditPlacePage = async ({ params }: { params: Promise<{ id: string }>; }) =
     const { id } = await params;
 
     const data = await actions.getDataById(id);
+    const tags = await actions.getTagCollection();
 
     return data && (
         <div className="w-screen py-20 flex justify-center flex-col items-center">
             <h1 className="text-5xl fomnt-extrabold uppercase mb-5 text-center">
                 <span className="text-4xl font-extrabold uppercase">Edit {data.name}</span>
             </h1>
-            <EditForm place={data} />
+            <EditForm place={data} tagCollection={tags[0].tag} />
         </div>
     )
 }
