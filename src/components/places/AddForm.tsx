@@ -20,13 +20,13 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
     const [tags, setTags] = useState<string[]>([]);
 
     useEffect(() => {
-        let tempArr: TagSuggestion[] = [];
+        const tempArr: TagSuggestion[] = [];
         tagCollection.map((tag, index) => tempArr.push({ value: index + 1, label: tag }))
         if (tempArr) setTagArray(tempArr)
     }, [tagCollection]);
 
     useEffect(() => {
-        let tempArr: string[] = [];
+        const tempArr: string[] = [];
         selected.map((selectedTags) => tempArr.push(selectedTags.label))
         if (tempArr) setTags(tempArr)
     }, [selected]);
