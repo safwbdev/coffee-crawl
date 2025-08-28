@@ -108,6 +108,7 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                     noOptionsText="No matching countries"
                     ariaDeletedText="Removed tag %value%"
                     newOptionText="Add %value%"
+                    allowNew
                 />
                 <input
                     name={'inputTags'}
