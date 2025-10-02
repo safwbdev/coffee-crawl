@@ -11,6 +11,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import Image from 'next/image';
 import { ReactTags, TagSuggestion } from 'react-tag-autocomplete'
 import './Form.css'
+import { toast } from 'react-toastify';
 
 const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: string[] }) => {
     const [newName, setNewName] = useState<string>(place?.name || '');
@@ -77,6 +78,7 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
     }
 
     const handleSubmit = () => {
+        toast('Changes have been saved!')
         setImage(undefined);
         redirect(`/places/${place.id}`);
     }

@@ -4,11 +4,13 @@ import Input from '../Input/Input'
 import Button from '../Button/Button'
 import * as actions from '@/actions'
 import { useCoffeeContext } from '@/context/CoffeeContext'
+import { toast } from 'react-toastify'
 
 const DeleteForm = () => {
     const { setOpenDeleteModal, placeToDelete, setPlaceToDelete } = useCoffeeContext();
 
     const handleSubmit = () => {
+        toast('Cafe has been deleted!')
         setOpenDeleteModal(false)
         setPlaceToDelete(undefined)
 

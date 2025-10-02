@@ -11,10 +11,12 @@ import { IoMdCloseCircle, } from "react-icons/io";
 import Image from 'next/image';
 import { ReactTags, TagSuggestion } from 'react-tag-autocomplete'
 import './Form.css'
+import { toast } from 'react-toastify';
 
 const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
     const [image, setImage] = useState<string | undefined>(undefined)
     const [formValues, setFormValues] = useState<string[]>([""]);
+    const [updatedTags, setUpdatedTags] = useState<string[]>(tagCollection || [""]);
     const [tagArray, setTagArray] = useState<TagSuggestion[]>([]);
     const [selected, setSelected] = useState<TagSuggestion[]>([])
     const [tags, setTags] = useState<string[]>([]);
@@ -31,25 +33,26 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
         if (tempArr) setTags(tempArr)
     }, [selected]);
 
+    /*
+        1. Check if new words in selected are pressent in tag collection
+        2. if new words found, call action to edit the tag api by adding in the new words
+        3. try do it here
+        4. if not, do it in action
+    */
 
-    const onAdd = useCallback(
-        (newTag: TagSuggestion) => {
-            setSelected([...selected, newTag])
-        },
-        [selected]
-    )
+    useEffect(() => {
+        selected.map(pop => {
+            if (!tagCollection.includes(pop.label)) {
+                setUpdatedTags(next => [...next, pop.label])
+            }
+        })
+    }, [selected])
 
-    const onDelete = useCallback(
-        (tagIndex: number) => {
-            setSelected(selected.filter((_, i) => i !== tagIndex))
-        },
-        [selected]
-    )
+    const onAdd = useCallback((newTag: TagSuggestion) => setSelected([...selected, newTag]), [selected]);
 
+    const onDelete = useCallback((tagIndex: number) => setSelected(selected.filter((_, i) => i !== tagIndex)), [selected]);
 
-    const addFormFields = () => {
-        setFormValues([...formValues, ""])
-    }
+    const addFormFields = () => setFormValues([...formValues, ""])
 
     const removeFormFields = (i: number) => {
         const newFormValues = [...formValues];
@@ -64,6 +67,7 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
     }
 
     const handleSubmit = () => {
+        toast('Entry Added!')
         redirect(`/`);
     }
 
@@ -114,6 +118,10 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                     name={'inputTags'}
                     type={'hidden'}
                     value={tags} />
+                <input
+                    name={'updatedTags'}
+                    type={'hidden'}
+                    value={updatedTags} />
                 <label>Socials</label>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>
