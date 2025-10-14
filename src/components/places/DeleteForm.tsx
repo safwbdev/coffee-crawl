@@ -10,7 +10,7 @@ const DeleteForm = () => {
     const { setOpenDeleteModal, placeToDelete, setPlaceToDelete } = useCoffeeContext();
 
     const handleSubmit = () => {
-        toast('Cafe has been deleted!')
+        toast.error('Cafe has been deleted!')
         setOpenDeleteModal(false)
         setPlaceToDelete(undefined)
 

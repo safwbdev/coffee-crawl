@@ -78,7 +78,7 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
     }
 
     const handleSubmit = () => {
-        toast('Changes have been saved!')
+        toast.success('Changes have been saved!')
         setImage(undefined);
         redirect(`/places/${place.id}`);
     }

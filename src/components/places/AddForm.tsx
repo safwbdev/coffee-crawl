@@ -70,7 +70,7 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
     }
 
     const handleSubmit = () => {
-        toast('Entry Added!')
+        toast.success('Entry Added!')
         redirect(`/`);
     }
 
@@ -192,11 +192,11 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                         alt='MainImage' />) : (<span>No Image selected</span>)}
                     <Input name='inputImage' value={image} type='hidden' />
                 </div>
-                <div className="flex flex-row">
+                <div className="flex flex-row w-full py-5">
                     <Button
                         type='submit'
                         text="Add"
-                        bgColor='bg-blue-600' />
+                        bgColor='bg-blue-600 w-full' />
                 </div>
             </div>
         </Form >
