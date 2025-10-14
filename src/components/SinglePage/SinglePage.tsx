@@ -7,8 +7,7 @@ import FavoriteButton from '../places/FavoriteButton'
 import RateModalButton from '../Modal/RateModalButton';
 import RateModal from '../Modal/RateModal';
 import Button from '../Button/Button';
-import { FaInstagram, FaFacebookSquare, FaGlobe, FaGlassMartiniAlt, FaLocationArrow } from "react-icons/fa";
-import { LuChefHat } from "react-icons/lu";
+import { FaInstagram, FaFacebookSquare, FaGlobe, FaLocationArrow } from "react-icons/fa";
 import Image from 'next/image';
 import TagSection from '../TagSection/TagSection';
 
@@ -78,7 +77,8 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                             {data.location}
                         </div>
                     </div>
-                    <div className='flex gap-3 justify-between mb-3'>
+                    {data.tags && data.tags.length !== 0 && <TagSection data={data.tags} />}
+                    {/* <div className='flex gap-3 justify-between mb-3'>
                         <div className="border-0 flex-1 flex md:justify-center">
                             <LuChefHat size={20} />
                         </div>
@@ -89,8 +89,7 @@ const SinglePage = ({ data }: { data: placeProps }) => {
                             <FaGlassMartiniAlt size={20} />
                         </div>
                         <div className="border-0 flex-15">{data.type}</div>
-                    </div>
-                    {data.tags && data.tags.length !== 0 && <TagSection data={data.tags} />}
+                    </div> */}
                     {/* {data.tags && data.tags.length !== 0 && data.tags[0] !== '' && (<div className='flex flex-wrap'>
                         {data.tags?.map((tag, index) => (
                             <div className="rounded-lg p-2 mr-2 mb-2 text-black bg-white capitalize" key={index}>{tag}</div>

@@ -92,18 +92,6 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                     placeholder='Location'
                     label='Location'
                 />
-                <Input
-                    name='type'
-                    type='text'
-                    placeholder='Type'
-                    label='Type'
-                />
-                <Input
-                    name='cuisine'
-                    type='text'
-                    placeholder='Cuisine'
-                    label='Cuisine'
-                />
                 <label>Tags</label>
                 <ReactTags
                     labelText="Tags"

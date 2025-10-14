@@ -55,16 +55,6 @@ export async function getFavoriteData() {
     return data;
 }
 
-// export async function createdTag(tagData: string[]) {
-//     console.log('CREATED TAG');
-//     await prisma.tag.create({
-//         data: {
-//             tag: tagData
-//         }
-//     });
-
-
-// }
 export async function editTag() {
     const inputId = process.env.TAG_ID;
 
@@ -88,13 +78,10 @@ export async function createdPlace(formData: FormData) {
 
     const name = formData.get("name") as string;
     const location = formData.get("location") as string;
-    const type = formData.get("type") as string;
-    const cuisine = formData.get("cuisine") as string;
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
     const tags = formData.get("inputTags") as string;
     const newtags = formData.get("newtags") as string;
-
     const tagArray = tags.split(',');
 
     if (!name.trim()) {
@@ -105,11 +92,8 @@ export async function createdPlace(formData: FormData) {
         data: {
             name: name,
             location: location,
-            type: type,
-            cuisine: cuisine,
             images: [inputImage],
             socials: socials.split(','),
-            // tags: tags.split(','),
             tags: tagArray,
         }
     });
@@ -177,12 +161,11 @@ export async function favoriteStatus(formData: FormData) {
 export async function editPlace(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const newName = formData.get("newName") as string;
-    const newType = formData.get("newType") as string;
     const newLocation = formData.get("newLocation") as string;
-    const newCuisine = formData.get("newCuisine") as string;
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
     const tags = formData.get("inputTags") as string;
+    const newtags = formData.get("newtags") as string;
 
     await prisma.place.update({
         where: {
@@ -191,13 +174,26 @@ export async function editPlace(formData: FormData) {
         data: {
             name: newName,
             location: newLocation,
-            type: newType,
-            cuisine: newCuisine,
             images: [inputImage],
             socials: socials.split(','),
             tags: tags.split(','),
         }
     });
+
+    if (newtags === 'true') {
+        const inputId = process.env.TAG_ID;
+        const updatedTags = formData.get("updatedTags") as string;
+
+        await prisma.tag.update({
+            where: {
+                id: inputId
+            },
+            data: {
+                tag: updatedTags.split(',')
+            }
+        })
+
+    }
 
     revalidatePath('/');
 }

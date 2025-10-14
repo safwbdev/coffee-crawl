@@ -16,13 +16,13 @@ import { toast } from 'react-toastify';
 const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: string[] }) => {
     const [newName, setNewName] = useState<string>(place?.name || '');
     const [newLocation, setNewLocation] = useState<string>(place?.location || '')
-    const [newType, setNewType] = useState<string>(place?.type || '')
-    const [newCuisine, setNewCuisine] = useState<string>(place?.cuisine || '')
+    const [updatedTags, setUpdatedTags] = useState<string[]>(tagCollection || [""]);
     const [image, setImage] = useState<string | undefined>(place?.images ? place?.images[0] : undefined)
     const [formValues, setFormValues] = useState<string[]>(place?.socials || [""]);
     const [tagArray, setTagArray] = useState<TagSuggestion[]>([]);
     const [selected, setSelected] = useState<TagSuggestion[]>([])
     const [tags, setTags] = useState<string[]>([]);
+    const [newtags, setNewTags] = useState<string>('');
 
 
     useEffect(() => {
@@ -44,6 +44,17 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
         selected.map((selectedTags) => tempArr.push(selectedTags.label))
         if (tempArr) setTags(tempArr)
     }, [selected]);
+
+    // update tag collection 
+    useEffect(() => {
+        selected.map(pop => {
+            if (!tagCollection.includes(pop.label)) {
+                if (updatedTags.includes(pop.label)) return;
+                setUpdatedTags(next => [...next, pop.label])
+                setNewTags('true')
+            }
+        })
+    }, [selected])
 
 
     const onAdd = useCallback(
@@ -111,24 +122,6 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
                     type='text'
                     isEdit
                 />
-                <Input
-                    name='newType'
-                    placeholder='Type'
-                    label='Type'
-                    value={newType}
-                    onChange={setNewType}
-                    type='text'
-                    isEdit
-                />
-                <Input
-                    name='newCuisine'
-                    placeholder='Cuisine'
-                    label='Cuisine'
-                    value={newCuisine}
-                    onChange={setNewCuisine}
-                    type='text'
-                    isEdit
-                />
                 <label>Tags</label>
                 <ReactTags
                     labelText="Tags"
@@ -140,11 +133,20 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
                     noOptionsText="No matching countries"
                     ariaDeletedText="Removed tag %value%"
                     newOptionText="Add %value%"
+                    allowNew
                 />
                 <input
                     name={'inputTags'}
                     type={'hidden'}
                     value={tags} />
+                <input
+                    name={'newtags'}
+                    type={'hidden'}
+                    value={newtags} />
+                <input
+                    name={'updatedTags'}
+                    type={'hidden'}
+                    value={updatedTags} />
                 <label>Socials</label>
                 {formValues.map((element, index) => (
                     <div className="flex items-center w-full" key={index}>
