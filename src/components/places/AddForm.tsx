@@ -20,6 +20,7 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
     const [tagArray, setTagArray] = useState<TagSuggestion[]>([]);
     const [selected, setSelected] = useState<TagSuggestion[]>([])
     const [tags, setTags] = useState<string[]>([]);
+    const [newtags, setNewTags] = useState<string>('');
 
     useEffect(() => {
         const tempArr: TagSuggestion[] = [];
@@ -27,26 +28,28 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
         if (tempArr) setTagArray(tempArr)
     }, [tagCollection]);
 
+    // set tags 
     useEffect(() => {
         const tempArr: string[] = [];
         selected.map((selectedTags) => tempArr.push(selectedTags.label))
         if (tempArr) setTags(tempArr)
     }, [selected]);
 
-    /*
-        1. Check if new words in selected are pressent in tag collection
-        2. if new words found, call action to edit the tag api by adding in the new words
-        3. try do it here
-        4. if not, do it in action
-    */
-
+    // update tag collection 
     useEffect(() => {
         selected.map(pop => {
             if (!tagCollection.includes(pop.label)) {
+                if (updatedTags.includes(pop.label)) return;
                 setUpdatedTags(next => [...next, pop.label])
+                setNewTags('true')
             }
         })
     }, [selected])
+
+    // Sort alphabetically 
+    useEffect(() => {
+        updatedTags.sort((a, b) => a.localeCompare(b))
+    }, [updatedTags])
 
     const onAdd = useCallback((newTag: TagSuggestion) => setSelected([...selected, newTag]), [selected]);
 
@@ -118,6 +121,10 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                     name={'inputTags'}
                     type={'hidden'}
                     value={tags} />
+                <input
+                    name={'newtags'}
+                    type={'hidden'}
+                    value={newtags} />
                 <input
                     name={'updatedTags'}
                     type={'hidden'}

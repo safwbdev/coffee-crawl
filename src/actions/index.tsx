@@ -67,7 +67,6 @@ export async function getFavoriteData() {
 // }
 export async function editTag() {
     const inputId = process.env.TAG_ID;
-    // const inputId = formData.get("inputId") as string;
 
     const updatedTags = ["updatedTags"];
 
@@ -94,17 +93,9 @@ export async function createdPlace(formData: FormData) {
     const inputImage = formData.get("inputImage") as string;
     const socials = formData.get("inputSocials") as string;
     const tags = formData.get("inputTags") as string;
+    const newtags = formData.get("newtags") as string;
 
     const tagArray = tags.split(',');
-
-    // const tagCollection = await getTagCollection();
-
-    // let newTagFound = false;
-    // console.log('CREATED PLACe: ', tagCollection);
-
-
-    // TODO : add new tags to main tag array then upload main tag array
-    // editTag();
 
     if (!name.trim()) {
         return;
@@ -123,32 +114,23 @@ export async function createdPlace(formData: FormData) {
         }
     });
 
-    // const filteredArray = tagCollection.filter(({ tag }) => {
-    //     console.log('filtering:', tag);
+    if (newtags === 'true') {
+        const inputId = process.env.TAG_ID;
+        const updatedTags = formData.get("updatedTags") as string;
 
-    //     if (tag) {
-    //         !tagArray.includes(tag)
-    //         newTagFound = true;
-    //     }
-    // });
-    // const uniqueArray = array.filter((item, index) => array.indexOf(item) === index);
+        await prisma.tag.update({
+            where: {
+                id: inputId
+            },
+            data: {
+                tag: updatedTags.split(',')
+            }
+        })
 
-
-    // if (newTagFound) {
-    //     filteredArray.map(({ tag }) => {
-    //         console.log('momom');
-
-    //         if (tag) {
-    //             createdTag(tag);
-    //             newTagFound = false;
-    //         }
-    //     })
-    // }
-
-
-
+    }
     revalidatePath('/');
 }
+
 export async function changeStatus(formData: FormData) {
     const inputId = formData.get("inputId") as string;
     const place = await prisma.place.findUnique({
