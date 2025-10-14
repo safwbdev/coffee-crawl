@@ -20,7 +20,7 @@ const TagSection = ({ data, isCentered }: { data: string[], isCentered?: boolean
 
   useEffect(() => {
     if (isPlace) setTagArray([])
-  }, [isPlace])
+  }, [isPlace, setTagArray])
 
   return (<div className={`flex flex-wrap ${isCentered && 'justify-center'}`}>
     {data.sort().map((tag, index) => (

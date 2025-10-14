@@ -37,7 +37,7 @@ const List = ({ isFavorites, data, tags }: { isFavorites?: boolean, data: placeP
 
     useEffect(() => {
         if (isFavorites) setTagArray([]);
-    }, [isFavorites])
+    }, [isFavorites, setTagArray])
 
 
     return (

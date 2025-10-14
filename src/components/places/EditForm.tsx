@@ -54,7 +54,7 @@ const EditForm = ({ place, tagCollection }: { place: placeProps, tagCollection: 
                 setNewTags('true')
             }
         })
-    }, [selected])
+    }, [selected, tagCollection, updatedTags])
 
 
     const onAdd = useCallback(

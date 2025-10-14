@@ -44,7 +44,7 @@ const AddForm = ({ tagCollection }: { tagCollection: string[] }) => {
                 setNewTags('true')
             }
         })
-    }, [selected])
+    }, [selected, tagCollection, updatedTags])
 
     // Sort alphabetically 
     useEffect(() => {
