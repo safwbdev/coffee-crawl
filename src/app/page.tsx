@@ -9,36 +9,12 @@ import Title from "@/components/Title";
  * - user login
  * - authentication (Clerk)
  * - sort function (alphabetical, rating)
+ * - image bug on single page
  * ====
  * DONE
  * ====
- * - filter/search by tags
- * - responsiveness
- * - responsiveness BUG ON FAVORITES MOBILE
- * - update img tags
- * - add tag overloading bug
- * - form layout
- * - tags on single page
- * - Turn types into tags
- * - image upload redirect back bug
- * - favorites page
- * - mobile layout
- * - single page layout
- * - navigation
- * - social media
- * - rating modal & functionality
- * - image upload | cloudinary
- * - delete modal
- * - add favorite
- * - single page for each place
- * - update add/edit forms
- * - popup modal
- * - forms in modal
- * - forms in modal page
- * - array data
- * - filter by complete, incmoplete, 
- * - status frontend doesn't update upon clicking 
- * 
+ * - layout on desktop
+
  */
 
 export default async function Home() {
